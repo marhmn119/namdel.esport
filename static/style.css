@@ -1,0 +1,249 @@
+/* Variabel Warna E-sports */
+:root {
+    --bg-dark: #0a0a0a;       /* Hitam gelap */
+    --bg-card: #1a1a1a;       /* Hitam keabuan untuk kartu */
+    --primary-orange: #ff6600;/* Oranye terang */
+    --secondary-yellow:#ffcc00;/* Kuning terang */
+    --text-white: #ffffff;    /* Putih */
+    --text-gray: #cccccc;     /* Abu-abu untuk deskripsi */
+}
+
+/* Reset Standar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Pengaturan Body dan Font Paragraf (Poppins) */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Pengaturan Font Judul (Montserrat) */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+/* TAMPILAN LOADING AWAL */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg-dark);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+.loader-logo {
+    width: 150px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--primary-orange);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: rgba(10, 10, 10, 0.95);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 2px solid var(--primary-orange);
+}
+.logo-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.nav-logo {
+    height: 45px;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+.nav-links a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+.nav-links a:hover {
+    color: var(--secondary-yellow);
+}
+
+/* BAGIAN PEMBUKA (HERO) */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    background: radial-gradient(circle, #2a1100 0%, var(--bg-dark) 70%);
+}
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+.hero h1 span {
+    color: var(--primary-orange);
+}
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--secondary-yellow);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.description {
+    color: var(--text-gray);
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    line-height: 1.6;
+}
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-orange), var(--secondary-yellow));
+    color: var(--bg-dark);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+/* PEMBATAS (DIVIDER) */
+.divider {
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-orange), var(--secondary-yellow), transparent);
+    margin: 40px 0;
+}
+
+/* BAGIAN UMUM UNTUK KONTEN */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+section h2 span {
+    color: var(--primary-orange);
+}
+.section-desc {
+    color: var(--text-gray);
+    margin-bottom: 40px;
+}
+
+/* KARTU ROSTER PEMAIn */
+.roster-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.card {
+    background-color: var(--bg-card);
+    padding: 25px 20px;
+    border-radius: 10px;
+    width: 220px;
+    border-top: 4px solid var(--secondary-yellow);
+    transition: transform 0.3s, border-color 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.card:hover {
+    transform: translateY(-10px);
+    border-top-color: var(--primary-orange);
+}
+.card-img-placeholder {
+    width: 90px;
+    height: 90px;
+    background-color: #333;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--secondary-yellow);
+}
+
+/* FORMULIR REKRUTMEN */
+.join-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    padding: 30px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-orange);
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--secondary-yellow);
+    font-weight: 600;
+}
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px;
+    background-color: #222;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+}
+.btn-submit {
+    width: 100%;
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+.btn-submit:hover {
+    background: var(--secondary-yellow);
+    color: var(--bg-dark);
+    transform: scale(1.02);
+}
