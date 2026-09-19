@@ -57,7 +57,7 @@ def register():
         conn.commit()
         conn.close()
         
-        return f"<script>alert('Mantap! Pendaftaran {nama} dan Foto Bukti Rank berhasil dikirim.'); window.location.href='/';</script>"
+        return redirect('/#join')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
