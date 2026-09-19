@@ -818,3 +818,34 @@ nav {
   border-radius: 0 !important;
   margin-top: 0 !important;
 }
+/* POPUP LINE-UP DI HP */
+@media screen and (max-width: 768px) {
+  #rosterModal .modal-content {
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+    padding: 50px 12px 20px !important;
+  }
+  #rosterModal .close-btn {
+    position: fixed !important;
+    top: 12px !important;
+    right: 14px !important;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    color: #fff !important;
+    z-index: 10001;
+  }
+  #modalRosterContainer {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+  #modalRosterContainer > div > div:first-child {
+    height: 70px !important;
+    font-size: 1.1rem !important;
+  }
+}
