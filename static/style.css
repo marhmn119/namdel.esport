@@ -803,3 +803,18 @@ nav {
   .modal-content { padding: 30px 20px !important; }
   .profile-slide-item { flex-direction: column-reverse; text-align: center; }
 }
+/* PERBAIKAN JADWAL DI LAPTOP */
+.match-header {
+  background: transparent !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.match-date { background: transparent !important; padding: 0 !important; }
+.match-card {
+  border: none !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+}
