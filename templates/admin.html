@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Manajer - NAMDEL ESPORT</title>
+    <link rel="icon" type="image/png" href="/static/logonest.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #0a0a0a; color: #ffffff; font-family: 'Poppins', sans-serif; margin: 0; }
+        .admin-nav { background-color: #161616; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ff6600; }
+        .admin-nav-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin: 0; }
+        .admin-nav-title span { color: #ff6600; }
+        .btn-logout { background: #e74c3c; color: white; padding: 8px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .dashboard-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .table-section { background-color: #161616; padding: 30px; border-radius: 12px; border: 1px solid #222; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background-color: #111; color: #888; padding: 15px; text-align: left; text-transform: uppercase; border-bottom: 2px solid #333; }
+        td { padding: 15px; border-bottom: 1px solid #222; vertical-align: middle; }
+        .wa-btn { display: inline-block; background-color: #25D366; color: white; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .btn-foto { display: inline-block; background-color: #ffcc00; color: #000; padding: 6px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <nav class="admin-nav">
+        <h1 class="admin-nav-title">PORTAL <span>MANAJER</span></h1>
+        <a href="/logout" class="btn-logout">Logout / Keluar</a>
+    </nav>
+    <div class="dashboard-container">
+        <div class="table-section">
+            <h2>📋 DATABASE REKRUTMEN & BUKTI RANK</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama Lengkap</th>
+                        <th>Role</th>
+                        <th>Bukti SS Rank</th>
+                        <th>Kontak</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pendaftar %}
+                    <tr>
+                        <td style="color: #888;">#{{ p[0] }}</td>
+                        <td><strong>{{ p[1] }}</strong></td>
+                        <td style="color: #ff6600; font-weight: bold;">{{ p[2] }}</td>
+                        <td>
+                            <!-- Menampilkan foto yang diupload, jika ada file-nya -->
+                            {% if p[4] %}
+                            <a href="/static/uploads/{{ p[4] }}" target="_blank" class="btn-foto">📷 Lihat SS</a>
+                            {% else %}
+                            <span style="color: #666; font-size: 0.8rem;">Tidak ada foto</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="https://wa.me/{{ p[3] }}" target="_blank" class="wa-btn">💬 WA</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
