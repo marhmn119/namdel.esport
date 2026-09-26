@@ -1,0 +1,881 @@
+/* --- CSS UTAMA NAMDEL ESPORT --- */
+:root {
+    --primary-orange: #ff6600;
+    --secondary-yellow: #ffcc00;
+    --bg-dark: #121212;
+    --bg-card: #1a1a1a;
+    --text-main: #ffffff;
+    --text-gray: #b0b0b0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* LOADING SCREEN */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+.loader-logo {
+    width: 80px;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #333;
+    border-top: 4px solid var(--primary-orange);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
+
+/* NAVBAR */
+nav {
+    background-color: var(--bg-card);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--primary-orange);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.nav-logo {
+    height: 35px;
+}
+.nav-right-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.live-clock-badge {
+    background: #000;
+    color: var(--secondary-yellow);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid #333;
+}
+.menu-btn {
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+.menu-btn:hover {
+    background: var(--secondary-yellow);
+    color: black;
+}
+
+/* MEGA MENU */
+.mega-menu {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(18, 18, 18, 0.98);
+    border-bottom: 2px solid var(--primary-orange);
+    padding: 30px 40px;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+}
+.mega-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.mega-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.mega-col a {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.mega-col a:hover {
+    color: var(--primary-orange);
+    padding-left: 5px;
+}
+
+/* HERO SECTION */
+.hero {
+    min-height: 85vh;
+    background: linear-gradient(135deg, #1a0800 0%, #0a0a0a 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 80px;
+    position: relative;
+    overflow: hidden;
+}
+.hero-top-row {
+    position: absolute;
+    top: 30px;
+    left: 80px;
+    right: 80px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.hero-left h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
+}
+.hero-left h1 span {
+    color: var(--primary-orange);
+}
+.hero-big-logo {
+    max-width: 280px;
+    filter: drop-shadow(0 0 30px rgba(255,102,0,0.3));
+}
+
+/* SECTIONS UMUM */
+.dark-section {
+    padding: 80px 20px;
+}
+.center-title {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 50px;
+}
+.center-title span {
+    color: var(--primary-orange);
+}
+
+/* SALAM PEMBUKA */
+.salam-section {
+    background-color: white;
+    color: black;
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+}
+.salam-text {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 2px solid #ccc;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.slider-btn:hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+}
+.prev-btn { left: 30px; }
+.next-btn { right: 30px; }
+
+/* JADWAL TURNAMEN */
+.schedule-section {
+    background-color: #141414;
+    padding: 80px 40px;
+}
+.schedule-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    align-items: center;
+}
+.schedule-left h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.1;
+}
+.schedule-left h2 span {
+    color: var(--primary-orange);
+}
+.section-subtitle {
+    color: var(--text-gray);
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+}
+.match-header {
+    background: #1f1f1f;
+    padding: 15px 20px;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    border-left: 4px solid var(--primary-orange);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.match-card {
+    background: var(--bg-card);
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #222;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.match-card:hover {
+    border-color: var(--primary-orange);
+    transform: translateY(-3px);
+}
+.match-date {
+    background: #111;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: var(--secondary-yellow);
+    text-align: center;
+}
+.match-info h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+.match-info h3 span {
+    color: var(--primary-orange);
+}
+.league {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+}
+.match-time {
+    font-weight: bold;
+    color: var(--primary-orange);
+}
+
+/* SKOR PERTANDINGAN */
+.score-section {
+    background-color: var(--bg-dark);
+}
+.score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.score-card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #222;
+}
+.score-header {
+    background: #111;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--text-gray);
+    border-bottom: 1px solid #222;
+}
+.score-body {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.score-team {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.score-logo {
+    width: 35px;
+    height: 35px;
+    background: var(--primary-orange);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.score-team-name {
+    font-weight: 600;
+}
+.score-team-name.winner {
+    color: var(--secondary-yellow);
+}
+.score-result {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    display: flex;
+    gap: 10px;
+}
+.score-result .win {
+    color: var(--secondary-yellow);
+}
+
+/* KOMUNITAS */
+.community-section {
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/static/logonest.png') center/cover;
+    padding: 100px 40px;
+}
+.community-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+.community-text-left h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    line-height: 1.1;
+}
+.community-text-left h2 span {
+    color: var(--primary-orange);
+}
+.community-text-left p {
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+.comm-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid #333;
+    transition: 0.3s;
+    margin-bottom: 15px;
+}
+.comm-btn:hover {
+    border-color: #25D366;
+    transform: translateY(-3px);
+}
+.main-whatsapp {
+    background: linear-gradient(135deg, #128C7E, #25D366);
+    border: none;
+}
+.comm-grid-small {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.comm-btn-small {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #333;
+    transition: 0.3s;
+}
+.comm-btn-small:hover {
+    border-color: var(--primary-orange);
+}
+.comm-social-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.social-icon-box {
+    background: #1a1a1a;
+    padding: 12px;
+    text-align: center;
+    border-radius: 6px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #222;
+    transition: 0.3s;
+}
+.social-icon-box:hover {
+    color: white;
+    border-color: var(--primary-orange);
+}
+
+/* ROSTER & GALERI */
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #222;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.card:hover {
+    border-color: var(--primary-orange);
+    transform: translateY(-5px);
+}
+.card-img-placeholder {
+    height: 150px;
+    background: #222;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.gallery-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+.gallery-track {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 10px;
+}
+.gallery-item {
+    min-width: 250px;
+    background: #141414;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #222;
+}
+.img-box {
+    height: 140px;
+    background: #222;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* TIMELINE */
+.timeline-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-left: 3px solid var(--primary-orange);
+    padding-left: 30px;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+.timeline-year {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--secondary-yellow);
+    margin-bottom: 5px;
+}
+.timeline-info h3 {
+    margin: 0 0 10px 0;
+}
+.timeline-info p {
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* FORM REKRUTMEN */
+.join-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #222;
+}
+.input-group {
+    margin-bottom: 20px;
+}
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 14px;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+}
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+}
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+.btn-submit:hover {
+    background: var(--secondary-yellow);
+    color: black;
+}
+
+/* MODAL UMUM */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    border: 1px solid #333;
+}
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-gray);
+}
+.close-btn:hover {
+    color: white;
+}
+.profile-slide-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.profile-nickname {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--secondary-yellow);
+    margin: 0 0 10px 0;
+}
+.profile-desc {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+.profile-big-img {
+    width: 150px;
+    height: 150px;
+    background: #222;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #444;
+}
+
+
+/* ==========================================================
+   --- ATURAN OTOMATIS KHUSUS TAMPILAN HP (RESPONSIVE) ---
+   ========================================================== */
+@media screen and (max-width: 768px) {
+    /* 1. Navbar HP */
+    nav {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .logo-container img {
+        height: 28px;
+    }
+    .nav-right-controls {
+        gap: 6px;
+    }
+    .live-clock-badge {
+        font-size: 0.65rem;
+        padding: 4px 6px;
+    }
+    .menu-btn {
+        padding: 4px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* 2. Hero Section HP */
+    .hero {
+        flex-direction: column;
+        padding: 60px 20px 40px 20px;
+        text-align: center;
+        min-height: auto;
+    }
+    .hero-top-row {
+        position: static;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 20px;
+    }
+    .hero-left h1 {
+        font-size: 2.3rem;
+        line-height: 1.2;
+    }
+    .hero-right {
+        margin-top: 30px;
+    }
+    .hero-big-logo {
+        max-width: 140px;
+    }
+
+    /* 3. Jadwal & Community Section HP */
+    .schedule-container, .community-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .schedule-left h2, .community-text-left h2, .center-title {
+        font-size: 2rem;
+    }
+    .schedule-section, .dark-section, .community-section {
+        padding: 50px 15px;
+    }
+
+    /* 4. Match Line-Up Modal di HP (Jadi 1 Kolom ke bawah) */
+    .match-roster-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* 5. Form Rekrutmen HP */
+    .join-form {
+        padding: 20px;
+    }
+    .input-group input, .input-group select {
+        padding: 12px;
+    }
+}
+
+
+/* ==========================================================
+   --- PERBAIKAN TAMBAHAN HP (menimpa inline style di HTML) ---
+   Blok ini HARUS tetap di paling bawah file.
+   ========================================================== */
+@media screen and (max-width: 768px) {
+  html, body { overflow-x: hidden; max-width: 100%; }
+
+  /* NAVBAR: link disembunyiin, semua ada di tombol Menu */
+  nav { padding: 10px 15px !important; }
+  .nav-links-center { display: none !important; }
+  .nav-logo { height: 28px !important; }
+  .nav-right-controls { gap: 6px !important; }
+  .live-clock-badge { font-size: 0.65rem !important; padding: 4px 6px !important; }
+  .menu-btn { padding: 4px 10px !important; font-size: 0.75rem !important; }
+
+  /* MEGA MENU (tadinya lebar 600px) */
+  #megaMenu { left: 15px !important; right: 15px !important; top: 60px !important; width: auto !important; padding: 20px !important; }
+  #megaMenu > div { grid-template-columns: 1fr !important; }
+
+  /* HERO */
+  .hero-top-row { position: static !important; flex-direction: column !important; gap: 5px; padding: 0 !important; text-align: center; margin-bottom: 20px; }
+  .tagline-est { padding-right: 0 !important; }
+
+  /* SALAM / SLIDER */
+  .salam-section { padding: 50px 15px 90px !important; min-height: auto !important; }
+  #salamContent { padding: 0 !important; }
+  #salamTitle { font-size: 1.6rem !important; }
+  .salam-text { font-size: 0.95rem !important; }
+  .slider-btn { top: auto !important; bottom: 25px !important; transform: none !important; width: 40px !important; height: 40px !important; }
+  .prev-btn { left: 20% !important; }
+  .next-btn { right: 20% !important; }
+  .slide-indicators { bottom: 39px !important; }
+
+  /* JADWAL */
+  .schedule-section { padding: 50px 15px !important; }
+  .schedule-container { grid-template-columns: 1fr !important; gap: 30px !important; }
+  .schedule-left h2 { font-size: 2.2rem !important; }
+  .match-card { flex-direction: column !important; align-items: flex-start !important; gap: 10px; padding: 20px 15px !important; }
+  .match-date { min-width: 0 !important; }
+  .match-info { padding: 0 !important; }
+  .match-info h3 { font-size: 1.15rem !important; }
+  .match-time { text-align: left !important; }
+
+  /* KOMUNITAS */
+  .community-section { padding: 50px 15px !important; }
+  .community-content { gap: 30px !important; }
+  .community-text-left, .community-cards-right { min-width: 0 !important; flex-basis: 100% !important; }
+  .community-text-left h2 { font-size: 2.2rem !important; }
+  .community-cards-right a { padding: 18px !important; }
+  .community-cards-right h3 { font-size: 1.1rem !important; }
+  .community-cards-right a > div:first-child { font-size: 2rem !important; margin-right: 15px !important; }
+
+  /* ROSTER (tadinya 5 kolom) */
+  .roster-section { padding: 50px 15px !important; }
+  .roster-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* GALERI */
+  .gallery-section { padding: 50px 15px !important; }
+  .gallery-item { flex: 0 0 260px !important; }
+
+  /* MODAL PROFIL */
+  .modal-content { padding: 30px 20px !important; }
+  .profile-slide-item { flex-direction: column-reverse; text-align: center; }
+}
+/* PERBAIKAN JADWAL DI LAPTOP */
+.match-header {
+  background: transparent !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.match-date { background: transparent !important; padding: 0 !important; }
+.match-card {
+  border: none !important;
+  border-bottom: 1px solid #e2e2e2 !important;
+  border-radius: 0 !important;
+  margin-top: 0 !important;
+}
+/* POPUP LINE-UP DI HP */
+@media screen and (max-width: 768px) {
+  #rosterModal .modal-content {
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+    padding: 50px 12px 20px !important;
+  }
+  #rosterModal .close-btn {
+    position: fixed !important;
+    top: 12px !important;
+    right: 14px !important;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 50%;
+    color: #fff !important;
+    z-index: 10001;
+  }
+  #modalRosterContainer {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+  #modalRosterContainer > div > div:first-child {
+    height: 70px !important;
+    font-size: 1.1rem !important;
+  }
+}
+/* ==========================================================
+   --- ATURAN OTOMATIS KHUSUS TAMPILAN HP (RESPONSIVE) ---
+   ========================================================== */
+@media screen and (max-width: 768px) {
+    /* 1. Navbar HP */
+    nav { padding: 10px 15px; flex-wrap: wrap; justify-content: space-between; }
+    .logo-container img { height: 28px; }
+    .nav-right-controls { gap: 6px; }
+    .live-clock-badge { font-size: 0.65rem; padding: 4px 6px; }
+    .menu-btn { padding: 4px 10px; font-size: 0.75rem; }
+
+    /* 2. Hero Section HP */
+    .hero { flex-direction: column; padding: 60px 20px 40px 20px; text-align: center; min-height: auto; }
+    .hero-top-row { position: static; flex-direction: column; gap: 5px; margin-bottom: 20px; }
+    .hero-left h1 { font-size: 2.3rem; line-height: 1.2; }
+    .hero-right { margin-top: 30px; }
+    .hero-big-logo { max-width: 140px; }
+
+    /* 3. Jadwal & Community Section HP */
+    .schedule-container, .community-content { grid-template-columns: 1fr; gap: 30px; }
+    .schedule-left h2, .community-text-left h2, .center-title { font-size: 2rem; }
+    .schedule-section, .dark-section, .community-section { padding: 50px 15px; }
+
+    /* 4. Match Line-Up Modal di HP (Jadi 1 Kolom ke bawah) */
+    .match-roster-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+
+    /* 5. Form Rekrutmen HP */
+    .join-form { padding: 20px; }
+    .input-group input, .input-group select { padding: 12px; }
+}
