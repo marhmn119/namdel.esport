@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMDEL ESPORT - SMAN 68</title>
+    <link rel="icon" type="image/png" href="/static/logonest.png">
+    <link rel="stylesheet" href="/static/style.css?v=31">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,900&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+        <meta name="description" content="NAMDEL ESPORT - Tim e-sports SMAN 68 Jakarta. Turnamen, roster, community, dan pendaftaran pemain.">
+    <meta property="og:title" content="NAMDEL ESPORT - SMAN 68">
+    <meta property="og:description" content="Tim e-sports SMAN 68 Jakarta, jadwal turnamen, galeri, dan rekrutmen pemain.">
+    <meta property="og:image" content="/static/logo68.png">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
+    <!-- EFEK SMOOTH SCROLL AGAR ANIMASI GESER HALUS -->
+     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .lightbox-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; flex-direction: column; }
+        .lightbox-content { max-width: 90%; max-height: 80vh; border-radius: 10px; box-shadow: 0 0 30px rgba(255,102,0,0.5); }
+        .lightbox-caption { color: #ffcc00; font-family: 'Poppins', sans-serif; font-size: 1.2rem; margin-top: 15px; font-weight: bold; }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .close-lightbox:hover { color: #ff6600; }
+        .gallery-item { cursor: pointer; transition: 0.3s; }
+        .gallery-item:hover { transform: scale(1.05); }
+
+        /* TICKER / MARQUEE */
+        .ticker-bar { background: linear-gradient(90deg, #ff6600, #e65c00); padding: 10px 0; overflow: hidden; white-space: nowrap; }
+        .ticker-content { display: inline-block; animation: ticker-scroll 25s linear infinite; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: #ffffff; letter-spacing: 1px; }
+        .ticker-content span { margin: 0 50px; }
+        @keyframes ticker-scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* STATISTIK TIM - COUNTER */
+        .stats-section { background: linear-gradient(135deg, #0b0f19 0%, #1a1f2e 100%); padding: 80px 40px; border-bottom: 4px solid #ff6600; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .stat-card { background: #161b27; border: 1px solid #2a303c; border-radius: 12px; padding: 35px 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+        .stat-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(255, 102, 0, 0.2); }
+        .stat-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .stat-number { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; color: #ffcc00; margin-bottom: 5px; }
+        .stat-label { font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        /* PRESTASI / ACHIEVEMENT */
+        .achievement-section { background-color: #0d1117; padding: 90px 40px; border-bottom: 4px solid #ff6600; }
+        .achievement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto; }
+        .achievement-card { background: linear-gradient(145deg, #161b27, #1f2738); border: 1px solid #2a303c; border-radius: 12px; padding: 30px 25px; text-align: center; transition: transform 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+        .achievement-card:hover { transform: translateY(-5px); border-color: #ff6600; }
+        .achievement-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #ff6600, #ffcc00); }
+        .trophy-icon { font-size: 3rem; margin-bottom: 15px; }
+        .achievement-title { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; color: #ffffff; margin-bottom: 8px; }
+        .achievement-event { font-family: 'Poppins', sans-serif; font-size: 0.85rem; color: #94a3b8; margin-bottom: 5px; }
+        .achievement-year { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: #ff6600; font-weight: 700; }
+
+        /* FAQ SECTION */
+        .faq-section { background-color: #11151c; padding: 90px 40px; border-bottom: 4px solid #ff6600; }
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: #1a1f2e; border: 1px solid #2a303c; border-radius: 10px; margin-bottom: 15px; overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: #ff6600; }
+        .faq-question { width: 100%; padding: 20px 25px; background: none; border: none; color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-question .faq-toggle { font-size: 1.5rem; color: #ff6600; transition: transform 0.3s; font-weight: 300; }
+        .faq-question.active .faq-toggle { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+        .faq-answer.open { max-height: 300px; }
+        .faq-answer p { padding: 0 25px 20px 25px; color: #94a3b8; font-family: 'Poppins', sans-serif; font-size: 0.95rem; line-height: 1.7; margin: 0; }
+
+        /* SCROLL TO TOP */
+        .scroll-top-btn { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, #ff6600, #e65c00); color: white; border: none; border-radius: 50%; font-size: 1.3rem; cursor: pointer; z-index: 9999; display: none; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(255, 102, 0, 0.4); transition: transform 0.3s, opacity 0.3s; }
+        .scroll-top-btn:hover { transform: scale(1.15); }
+        .scroll-top-btn.visible { display: flex; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .achievement-grid { grid-template-columns: 1fr; }
+            .stat-number { font-size: 2rem; }
+        }
+
+        /* NEW SECTIONS: Merch & Partner */
+        .merch-card:hover { transform: translateY(-8px) !important; box-shadow: 0 15px 40px rgba(0,0,0,0.5) !important; border-color: #ff6600 !important; }
+        .partner-logo:hover { filter: grayscale(0%) !important; opacity: 1 !important; transform: scale(1.05) !important; }
+    </style>
+</head>
+<body>
+    <!-- LOADING SCREEN -->
+<div id="loader"><img src="/static/logonest.png" alt="NEST Logo" class="loader-logo"></div>
+
+    <!-- NAVBAR UTAMA -->
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: #0b0f19; border-bottom: 1px solid #1e2538; position: relative; z-index: 99999;">
+        <div class="logo-container" style="display: flex; align-items: center; gap: 15px;">
+            <img src="/static/logo68.png" alt="SMAN 68" class="nav-logo" style="height: 40px;">
+            <img src="/static/logonest.png" alt="NEST" class="nav-logo" style="height: 35px;">
+        </div>
+
+        <div class="nav-links-center" style="display: flex; gap: 25px; align-items: center;">
+            <a href="#jadwal" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">Jadwal</a>
+            <a href="#statistik" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">Statistik</a>
+            <a href="#roster" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">Tim</a>
+            <a href="#prestasi" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">Prestasi</a>
+            <a href="#join" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">Rekrutmen</a>
+            <a href="#faq" style="color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; font-family: 'Poppins', sans-serif;">FAQ</a>
+        </div>
+
+        <div class="nav-right-controls" style="display: flex; align-items: center; gap: 15px;">
+            <div class="live-clock-badge" id="liveClock" style="background: #121826; border: 1px solid #ff6600; color: #ffcc00; padding: 6px 12px; border-radius: 6px; font-weight: bold; font-size: 0.85rem;">00:00:00 WIB</div>
+            <button class="menu-btn" onclick="toggleMenu()" style="background: #121826; border: 1px solid #2a344d; color: white; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif;">
+                Menu <span style="font-size: 1.1rem;">☰</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MEGA MENU DROPDOWN -->
+    <div id="megaMenu" style="display: none; position: absolute; top: 75px; right: 40px; background: #0b0f19; border: 1px solid #ff6600; padding: 30px; z-index: 99998; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); width: 700px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: left;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <a href="#home" onclick="toggleMenu()" style="color: #38bdf8; text-decoration: none; font-weight: 700; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">Beranda ↗</a>
+                <a href="#jadwal" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Jadwal Turnamen</a>
+                <a href="#statistik" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Statistik Tim</a>
+                <a href="#prestasi" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Prestasi</a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <a href="#roster" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Roster Tim Utama</a>
+                <a href="#galeri" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Dokumentasi Kegiatan</a>
+                <a href="#komunitas" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Gabung Komunitas</a>
+                <a href="#merchandise" onclick="toggleMenu()" style="color: #ffcc00; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Katalog Merchandise</a>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <a href="#join" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Rekrutmen Pemain</a>
+                <a href="#faq" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">FAQ Rekrutmen</a>
+                <a href="#partnership" onclick="toggleMenu()" style="color: #ffcc00; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Mitra / Sponsor</a>
+                <a href="#kontak" onclick="toggleMenu()" style="color: #94a3b8; text-decoration: none; font-weight: 600; font-family: 'Poppins', sans-serif;">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+ <!-- HERO SECTION -->
+    <header id="home" class="hero" style="min-height: 100vh; position: relative; overflow: hidden;">
+        <!-- BAGIAN ATAS: Tagline Kiri & Kanan -->
+        <div class="hero-top-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; position: absolute; top: 15px; left: 0; padding: 0 40px; box-sizing: border-box; z-index: 5;">
+            <span class="tagline" style="color: #ffffff; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;">FROM SMAN 68, FOR THE CHAMPIONSHIP.</span>
+            <span class="tagline-est" style="color: #ffffff; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; padding-right: 30px;">EST. 2021 - SEKARANG</span>
+        </div>
+
+        <div class="hero-glow-effect"></div>
+        
+        <div class="hero-left">
+            <h1>SATU TIM<br>SATU AMBISI<br><span>NAMDEL ESPORT</span></h1>
+        </div>
+        <div class="hero-right">
+            <img src="/static/logonest.png" alt="NEST Big Logo" class="hero-big-logo">
+        </div>
+    </header>
+
+    <!-- TICKER PENGUMUMAN -->
+    <div class="ticker-bar">
+        <div class="ticker-content">
+            {% if tickers %}
+                {% for t in tickers %}
+                <span>{{ t['content'] if t.__class__.__name__ == 'Row' else t[1] }}</span>
+                {% endfor %}
+            {% else %}
+                <span>OPEN RECRUITMENT SEASON 2026 - DAFTAR SEKARANG!</span>
+                <span>NEST JUARA RRQ MABAR 2024</span>
+                <span>SCRIM RUTIN SETIAP SABTU & MINGGU</span>
+                <span>FOLLOW INSTAGRAM @nest.esports UNTUK UPDATE TERBARU</span>
+                <span>TURNAMEN ESI JAKARTA - OKTOBER 2026</span>
+            {% endif %}
+        </div>
+    </div>
+
+<!-- SALAM PEMBUKA (SLIDER - Latar Putih, Teks Pas, Ukuran Stabil) -->
+    <section id="salam" class="salam-section" style="position: relative; background-color: #ffffff; padding: 80px 60px; border-bottom: 2px solid #eaeaea; text-align: center; overflow: hidden; display: flex; flex-direction: column; justify-content: center; min-height: 400px;">
+        
+        <!-- Tombol Slider Kiri -->
+        <button class="slider-btn prev-btn" id="prevSlide" style="position: absolute; left: 50px; top: 50%; transform: translateY(-50%); background: #f5f5f5; color: #333333; border: 1px solid #dddddd; width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; z-index: 10;" onmouseover="this.style.backgroundColor='#ff6600'; this.style.color='#ffffff'; this.style.borderColor='#ff6600'" onmouseout="this.style.backgroundColor='#f5f5f5'; this.style.color='#333333'; this.style.borderColor='#dddddd'">&#10094;</button>
+        
+        <!-- Konten Teks -->
+        <div class="salam-content-wrapper" id="salamContent" style="max-width: 850px; margin: 0 auto; transition: opacity 0.4s ease, transform 0.4s ease; padding: 0 40px; min-height: 150px; display: flex; flex-direction: column; justify-content: center;">
+            <h2 class="center-title" id="salamTitle" style="color: #111111; font-size: 2.4rem; font-weight: 900; margin-bottom: 15px; letter-spacing: 0.5px;">WELCOME TO <span style="color: #ff6600;">NAMDEL ESPORT</span></h2>
+            <p class="salam-text" id="salamText" style="color: #555555; font-size: 1.1rem; line-height: 1.6; font-weight: 400; margin: 0;">Selamat datang di web resmi divisi E-Sports SMAN 68 Jakarta. Kami mencari talenta-talenta terbaik yang memiliki mental juara, disiplin tinggi, dan kemauan keras untuk membawa nama sekolah ke puncak arena kompetitif.</p>
+        </div>
+        
+        <!-- Tombol Slider Kanan -->
+        <button class="slider-btn next-btn" id="nextSlide" style="position: absolute; right: 50px; top: 50%; transform: translateY(-50%); background: #f5f5f5; color: #333333; border: 1px solid #dddddd; width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; z-index: 10;" onmouseover="this.style.backgroundColor='#ff6600'; this.style.color='#ffffff'; this.style.borderColor='#ff6600'" onmouseout="this.style.backgroundColor='#f5f5f5'; this.style.color='#333333'; this.style.borderColor='#dddddd'">&#10095;</button>
+        
+        <!-- Indikator Dot (Terkunci presisi di tengah bawah) -->
+        <div class="slide-indicators" style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 10;">
+            <span class="indicator-dot active" style="width: 12px; height: 12px; background: #ff6600; border-radius: 50%; display: inline-block; cursor: pointer; transition: 0.3s;"></span>
+            <span class="indicator-dot" style="width: 12px; height: 12px; background: #dddddd; border-radius: 50%; display: inline-block; cursor: pointer; transition: 0.3s;"></span>
+            <span class="indicator-dot" style="width: 12px; height: 12px; background: #dddddd; border-radius: 50%; display: inline-block; cursor: pointer; transition: 0.3s;"></span>
+        </div>
+    </section>
+
+    <!-- JADWAL TURNAMEN -->
+    <section id="jadwal" class="schedule-section" style="padding: 100px 40px; background-color: #ffffff; color: #111111;">
+        <div class="schedule-container" style="max-width: 1350px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start;">
+            <div class="schedule-left" style="padding-top: 10px;">
+                <p class="section-subtitle" style="font-size: 0.75rem; font-weight: 700; color: #888888; letter-spacing: 2px; margin-bottom: 12px;">NEXT UP / MATCH CENTER</p>
+                <h2 style="font-size: 3.2rem; font-family: 'Montserrat', sans-serif; font-weight: 900; line-height: 1.1; color: #111111; margin: 0;">
+                    SAATNYA<br><span style="color: #ff6600;">BERLAGA.</span>
+                </h2>
+            </div>
+
+            <div class="schedule-right" style="display: flex; flex-direction: column; width: 100%;">
+                <div class="match-header" style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; font-weight: 700; color: #111; letter-spacing: 0.5px; border-bottom: 2px solid #111; padding-bottom: 15px; margin-bottom: 0;">
+                    <span>PERTANDINGAN TERBARU</span>
+                    <span>WIB / UTC+7</span>
+                </div>
+
+                <!-- Match 1 -->
+                <div class="match-card" onclick="openModal('RRQ MABAR')" data-targetdate="2026-09-25T18:30:00" style="display: flex; align-items: center; justify-content: space-between; padding: 40px 45px; background-color: #f5f2e6; border-bottom: 1px solid #e2e2e2; cursor: pointer; transition: 0.2s; width: 100%; box-sizing: border-box;">
+                    <div class="match-date" style="font-weight: 800; font-size: 1.3rem; color: #111; min-width: 120px;">26 SEP</div>
+                    <div class="match-info" style="flex-grow: 1; padding: 0 30px;">
+                        <p class="league" style="font-size: 0.75rem; color: #888; font-weight: 600; margin: 0 0 6px 0; text-transform: uppercase;">Turnamen Pelajar</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #111; margin: 0 0 8px 0; letter-spacing: 0.5px;">RRQ MABAR</h3>
+                        <p class="match-timer-text" style="color: #ff6600; font-weight: 700; font-size: 0.85rem; margin: 0;">
+                            ⏱️ <span class="countdown-clock">Menghitung waktu...</span>
+                        </p>
+                    </div>
+                    <div class="match-time" style="font-weight: 800; font-size: 1.2rem; color: #111; text-align: right;">11.30  WIB ↗</div>
+                </div>
+
+                <!-- Match 2 -->
+                <div class="match-card" onclick="openModal('ESI JAKARTA')" data-targetdate="2026-10-05T15:00:00" style="display: flex; align-items: center; justify-content: space-between; padding: 40px 45px; background-color: #f9f9f9; border-bottom: 1px solid #e2e2e2; cursor: pointer; transition: 0.2s; width: 100%; box-sizing: border-box;" onmouseover="this.style.backgroundColor='#f1f1f1'" onmouseout="this.style.backgroundColor='#f9f9f9'">
+                    <div class="match-date" style="font-weight: 800; font-size: 1.3rem; color: #111; min-width: 120px;">5 OKT</div>
+                    <div class="match-info" style="flex-grow: 1; padding: 0 30px;">
+                        <p class="league" style="font-size: 0.75rem; color: #888; font-weight: 600; margin: 0 0 6px 0; text-transform: uppercase;">Turnamen Pelajar</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #111; margin: 0 0 8px 0; letter-spacing: 0.5px;">ESI JAKARTA</h3>
+                        <p class="match-timer-text" style="color: #ff6600; font-weight: 700; font-size: 0.85rem; margin: 0;">
+                            ⏱️ <span class="countdown-clock">Menghitung waktu...</span>
+                        </p>
+                    </div>
+                    <div class="match-time" style="font-weight: 800; font-size: 1.2rem; color: #111; text-align: right;">18.00 WIB ↗</div>
+                </div>
+
+                <!-- Match 3 -->
+                <div class="match-card" onclick="openModal('LIGA ESPORT NASIONAL')" data-targetdate="2026-10-09T16:00:00" style="display: flex; align-items: center; justify-content: space-between; padding: 40px 45px; background-color: #f9f9f9; border-bottom: 1px solid #e2e2e2; cursor: pointer; transition: 0.2s; width: 100%; box-sizing: border-box;" onmouseover="this.style.backgroundColor='#f1f1f1'" onmouseout="this.style.backgroundColor='#f9f9f9'">
+                    <div class="match-date" style="font-weight: 800; font-size: 1.3rem; color: #111; min-width: 120px;">9 OKT</div>
+                    <div class="match-info" style="flex-grow: 1; padding: 0 30px;">
+                        <p class="league" style="font-size: 0.75rem; color: #888; font-weight: 600; margin: 0 0 6px 0; text-transform: uppercase;">Turnamen Pelajar</p>
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: #111; margin: 0 0 8px 0; letter-spacing: 0.5px;">LIGA ESPORT NASIONAL PELAJAR</h3>
+                        <p class="match-timer-text" style="color: #ff6600; font-weight: 700; font-size: 0.85rem; margin: 0;">
+                            ⏱️ <span class="countdown-clock">Menghitung waktu...</span>
+                        </p>
+                    </div>
+                    <div class="match-time" style="font-weight: 800; font-size: 1.2rem; color: #111; text-align: right;">16.00 WIB ↗</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEDIA CENTER / LIVE STREAM -->
+    <section id="media-center" class="media-section" style="background-color: #0b0f19; padding: 90px 40px; border-bottom: 4px solid #ff6600;">
+        <style>
+            @media (max-width: 900px) {
+                .media-grid { grid-template-columns: 1fr !important; }
+            }
+        </style>
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px;">
+            <div style="text-align: center;">
+                <h2 class="center-title" style="color: white; margin-bottom: 15px;">MATCH <span>VODS & LIVE</span></h2>
+                <p style="color: #94a3b8; font-family: 'Poppins', sans-serif; max-width: 600px; margin: 0 auto;">Saksikan kembali momen epik, siaran langsung pertandingan terbaru, dan cuplikan highlight terbaik dari NAMDEL ESPORT.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px;" class="media-grid">
+                <!-- Video Utama (Live / Highlight terbaru) -->
+                <div style="background: #11151c; border-radius: 12px; overflow: hidden; border: 1px solid #2a303c;">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                        <!-- Embed YouTube Placeholder -->
+                        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/2zToEPpFEN8?autoplay=0&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div style="padding: 25px;">
+                        <span style="background: red; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; margin-right: 10px;">🔴 LIVE</span>
+                        <span style="color: #94a3b8; font-size: 0.9rem;">Turnamen Pelajar Se-Jakarta</span>
+                        <h3 style="color: white; margin: 15px 0 10px 0; font-family: 'Montserrat', sans-serif; font-size: 1.5rem;">GRAND FINAL: NEST vs ESI JAKARTA</h3>
+                    </div>
+                </div>
+
+                <!-- Daftar VODs / Highlight -->
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <h3 style="color: white; font-family: 'Montserrat', sans-serif; font-size: 1.2rem; margin: 0; border-left: 4px solid #ff6600; padding-left: 10px;">Match Highlights</h3>
+                    
+                    <!-- Item 1 -->
+                    <a href="#" style="display: flex; gap: 15px; background: #161b27; padding: 15px; border-radius: 8px; border: 1px solid #2a303c; text-decoration: none; transition: 0.3s;" onmouseover="this.style.borderColor='#ff6600'" onmouseout="this.style.borderColor='#2a303c'">
+                        <div style="width: 120px; height: 75px; background: #111; border-radius: 6px; overflow: hidden; position: relative; flex-shrink: 0;">
+                            <img src="/static/dokumentasi.png" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.8); color: white; font-size: 0.7rem; padding: 2px 5px; border-radius: 3px;">10:24</div>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <h4 style="color: white; margin: 0 0 5px 0; font-size: 0.95rem;">Momen Comeback Epic!</h4>
+                            <span style="color: #ffcc00; font-size: 0.8rem;">RRQ MABAR 2024</span>
+                        </div>
+                    </a>
+
+                    <!-- Item 2 -->
+                    <a href="#" style="display: flex; gap: 15px; background: #161b27; padding: 15px; border-radius: 8px; border: 1px solid #2a303c; text-decoration: none; transition: 0.3s;" onmouseover="this.style.borderColor='#ff6600'" onmouseout="this.style.borderColor='#2a303c'">
+                        <div style="width: 120px; height: 75px; background: #111; border-radius: 6px; overflow: hidden; position: relative; flex-shrink: 0;">
+                            <img src="/static/Pertemuan scrim.png" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.8); color: white; font-size: 0.7rem; padding: 2px 5px; border-radius: 3px;">08:15</div>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <h4 style="color: white; margin: 0 0 5px 0; font-size: 0.95rem;">Banu Savage Montage</h4>
+                            <span style="color: #ffcc00; font-size: 0.8rem;">Highlight Individu</span>
+                        </div>
+                    </a>
+
+                    <!-- Item 3 -->
+                    <a href="#" style="display: flex; gap: 15px; background: #161b27; padding: 15px; border-radius: 8px; border: 1px solid #2a303c; text-decoration: none; transition: 0.3s;" onmouseover="this.style.borderColor='#ff6600'" onmouseout="this.style.borderColor='#2a303c'">
+                        <div style="width: 120px; height: 75px; background: #111; border-radius: 6px; overflow: hidden; position: relative; flex-shrink: 0;">
+                            <img src="/static/artbook.png" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div style="position: absolute; bottom: 5px; right: 5px; background: rgba(0,0,0,0.8); color: white; font-size: 0.7rem; padding: 2px 5px; border-radius: 3px;">15:30</div>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <h4 style="color: white; margin: 0 0 5px 0; font-size: 0.95rem;">Grand Final UTA45</h4>
+                            <span style="color: #ffcc00; font-size: 0.8rem;">Full Match VOD</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTIK TIM -->
+    <section id="statistik" class="stats-section">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 50px; color: white;">STATISTIK <span>TIM</span></h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">⚔️</div>
+                <div class="stat-number" data-target="4">0</div>
+                <div class="stat-label">Total Match</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number" data-target="72" data-suffix="%">0%</div>
+                <div class="stat-label">Winrate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🥇</div>
+                <div class="stat-number" data-target="0">0</div>
+                <div class="stat-label">Trofi</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number" data-target="260">0</div>
+                <div class="stat-label">Anggota Fams</div>
+            </div>
+        </div>
+    </section>
+
+<!-- GABUNG KOMUNITAS (Hanya WhatsApp & Instagram) -->
+    <section id="komunitas" class="community-section" style="padding: 100px 40px; background-color: #11151c; position: relative; border-bottom: 4px solid #ff6600;">
+        <div class="community-content" style="max-width: 1100px; margin: 0 auto; display: flex; gap: 60px; align-items: center; position: relative; z-index: 2; flex-wrap: wrap;">
+            
+            <!-- Teks Kiri -->
+            <div class="community-text-left" style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 3.5rem; font-weight: 900; color: white; margin-bottom: 20px; line-height: 1.1;">GABUNG<br><span style="color: #ffcc00;">NAMDEL FAMS</span></h2>
+                <p style="color: #c9d1d9; font-size: 1.1rem; line-height: 1.7;">Jadilah bagian dari perjalanan kami. Dapatkan update info turnamen terbaru, mabar bareng, dan dukung tim kebanggaan SMAN 68 Jakarta!</p>
+            </div>
+            
+            <!-- Tombol Kanan -->
+            <div class="community-cards-right" style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 20px;">
+                <a href="https://whatsapp.com/channel/0029VbD4U4zAu3aIU58Wzm2v" target="_blank" style="background: linear-gradient(135deg, #a7caca, #00fb60); display: flex; align-items: center; padding: 25px 30px; border-radius: 12px; text-decoration: none; color: white; box-shadow: 0 10px 25px rgba(0, 131, 176, 0.4); transition: transform 0.3s ease;">
+                    <div style="font-size: 3rem; margin-right: 25px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">💬</div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5px;">GABUNG WHATSAPP</h3>
+                        <p style="margin: 5px 0 0 0; font-size: 0.95rem; font-weight: 600; opacity: 0.9;">Saluran & Grup Resmi Komunitas ↗</p>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/nest.esports?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); display: flex; align-items: center; padding: 25px 30px; border-radius: 12px; text-decoration: none; color: white; box-shadow: 0 10px 25px rgba(220, 39, 67, 0.4); transition: transform 0.3s ease;">
+                    <div style="font-size: 3rem; margin-right: 25px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">📸</div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: 0.5px;">FOLLOW INSTAGRAM</h3>
+                        <p style="margin: 5px 0 0 0; font-size: 0.95rem; font-weight: 600; opacity: 0.9;">Update Info & Dokumentasi Terbaru ↗</p>
+                    </div>
+                </a>
+            </div>
+
+        </div> <!-- KUNCI 1: Penutup Div Content -->
+    </section> <!-- KUNCI 2: Penutup Section Komunitas -->
+                
+    <!-- MODAL PROFIL PEMAIN -->
+    <div id="playerProfileModal" class="modal" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); justify-content: center; align-items: center;">
+        <div class="modal-content" style="background: #1a1a1a; padding: 40px; border-radius: 12px; width: 90%; max-width: 600px; position: relative; border: 1px solid #333; box-shadow: 0 0 30px rgba(0,0,0,0.5); overflow-y: auto; max-height: 90vh;">
+            
+            <span onclick="closePlayerModal()" style="position: absolute; right: 20px; top: 15px; font-size: 32px; cursor: pointer; color: #888; font-weight: bold; line-height: 1;">&times;</span>
+
+            <!-- Profil 1: Jungler -->
+            <div class="profile-slide-item" id="profile-jungler" style="display: none; flex-direction: column; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; color: #ffcc00; margin: 0 0 5px 0;">Banu</h1>
+                        <div style="color: #ff6600; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 10px;">Aggressive Jungler</div>
+                        <p style="color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0;">Mesin pembunuh utama NAMDEL ESPORT yang siap mengeksekusi lawan tanpa ragu.</p>
+                        <div>
+                            <strong style="color: white; font-size: 0.85rem;">Signature Heroes:</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Fanny, Lancelot, Ling</span>
+                        </div>
+                    </div>
+                    <div><img src="/static/banu.png" style="width: 120px; height: 120px; object-fit: cover; border-radius: 12px; border: 3px solid #ffcc00;"></div>
+                </div>
+                <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: white; font-size: 0.9rem; text-align: center; margin-top: 0; margin-bottom: 10px;">Statistik Gaya Main</h3>
+                    <div style="position: relative; height: 250px; width: 100%;"><canvas id="radar-jungler"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Profil 2: Exp Laner -->
+            <div class="profile-slide-item" id="profile-explaner" style="display: none; flex-direction: column; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; color: #ffcc00; margin: 0 0 5px 0;">Arkan</h1>
+                        <div style="color: #ff6600; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 10px;">Frontline Initiator</div>
+                        <p style="color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0;">Fighter tangguh yang bertugas menahan badan dan mengacak-acak formasi musuh.</p>
+                        <div>
+                            <strong style="color: white; font-size: 0.85rem;">Signature Heroes:</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Yu Zhong, Terizla, Lapu-Lapu</span>
+                        </div>
+                    </div>
+                    <div><img src="/static/arkan.png" style="width: 120px; height: 120px; object-fit: cover; border-radius: 12px; border: 3px solid #ffcc00;"></div>
+                </div>
+                <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: white; font-size: 0.9rem; text-align: center; margin-top: 0; margin-bottom: 10px;">Statistik Gaya Main</h3>
+                    <div style="position: relative; height: 250px; width: 100%;"><canvas id="radar-explaner"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Profil 3: Mid Laner -->
+            <div class="profile-slide-item" id="profile-midlaner" style="display: none; flex-direction: column; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; color: #ffcc00; margin: 0 0 5px 0;">Ridwan</h1>
+                        <div style="color: #ff6600; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 10px;">Burst & Control</div>
+                        <p style="color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0;">Mage andalan tim yang siap memberikan burst damage area terbesar saat team fight.</p>
+                        <div>
+                            <strong style="color: white; font-size: 0.85rem;">Signature Heroes:</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Pharsa, Yve, Kadita</span>
+                        </div>
+                    </div>
+                    <div><img src="/static/ridwan.png" style="width: 120px; height: 120px; object-fit: cover; border-radius: 12px; border: 3px solid #ffcc00;"></div>
+                </div>
+                <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: white; font-size: 0.9rem; text-align: center; margin-top: 0; margin-bottom: 10px;">Statistik Gaya Main</h3>
+                    <div style="position: relative; height: 250px; width: 100%;"><canvas id="radar-midlaner"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Profil 4: Roamer -->
+            <div class="profile-slide-item" id="profile-roamer" style="display: none; flex-direction: column; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; color: #ffcc00; margin: 0 0 5px 0;">Rasya</h1>
+                        <div style="color: #ff6600; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 10px;">Protective Roam</div>
+                        <p style="color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0;">Sang inisiator sekaligus pelindung tim di garis terdepan. Mata dan telinga bagi rekan setim.</p>
+                        <div>
+                            <strong style="color: white; font-size: 0.85rem;">Signature Heroes:</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Chou, Minotaur, Khufra</span>
+                        </div>
+                    </div>
+                    <div><img src="/static/rasya.png" style="width: 120px; height: 120px; object-fit: cover; border-radius: 12px; border: 3px solid #ffcc00;"></div>
+                </div>
+                <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: white; font-size: 0.9rem; text-align: center; margin-top: 0; margin-bottom: 10px;">Statistik Gaya Main</h3>
+                    <div style="position: relative; height: 250px; width: 100%;"><canvas id="radar-roamer"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Profil 5: Gold Laner -->
+            <div class="profile-slide-item" id="profile-goldlaner" style="display: none; flex-direction: column; gap: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; color: #ffcc00; margin: 0 0 5px 0;">Aimar</h1>
+                        <div style="color: #ff6600; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 10px;">Late Game Insurance</div>
+                        <p style="color: #b0b0b0; font-size: 0.95rem; line-height: 1.5; margin: 0 0 15px 0;">Marksman tim yang menjadi jaminan kemenangan mutlak di fase late game.</p>
+                        <div>
+                            <strong style="color: white; font-size: 0.85rem;">Signature Heroes:</strong><br>
+                            <span style="color: #94a3b8; font-size: 0.85rem;">Claude, Beatrix, Brody</span>
+                        </div>
+                    </div>
+                    <div><img src="/static/aimar.png" style="width: 120px; height: 120px; object-fit: cover; border-radius: 12px; border: 3px solid #ffcc00;"></div>
+                </div>
+                <div style="background: #111; padding: 15px; border-radius: 8px; border: 1px solid #333;">
+                    <h3 style="color: white; font-size: 0.9rem; text-align: center; margin-top: 0; margin-bottom: 10px;">Statistik Gaya Main</h3>
+                    <div style="position: relative; height: 250px; width: 100%;"><canvas id="radar-goldlaner"></canvas></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- ROSTER TIM KITA -->
+    <section id="roster" class="roster-section" style="background-color: #1f242d; padding: 70px 40px; border-bottom: 4px solid #ff6600; width: 100%; box-sizing: border-box;">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 40px; color: white;">ROSTER <span>TIM UTAMA</span></h2>
+        
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <!-- KATEGORI TIM 1: NAMDEL ALPHA -->
+            <div class="team-roster-group" style="margin-bottom: 50px;">
+                <h3 style="color: #ffcc00; font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; border-left: 4px solid #ff6600; padding-left: 12px; letter-spacing: 1px;">🔥 NEST (1)</h3>
+                
+                <!-- INI KUNCI BIAR KARTU BERJEJER 5 KOLOM (JANGAN SAMPAI KEHAPUS) -->
+                <div class="roster-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
+                    
+                    <!-- Pemain 1: Jungler -->
+                    <div class="card clickable-card" onclick="openPlayerModal('jungler')" style="background: #2a303c; border-radius: 8px; overflow: hidden; text-align: center; border-left: 4px solid #ff6600; cursor: pointer;">
+                        <img src="/static/banu.png" style="width: 100%; height: 150px; object-fit: cover; object-position: top; background: #1b1f28; display: block;">
+                        <div style="padding: 12px 10px;">
+                            <h3 style="color: white; font-size: 1rem; margin: 0 0 2px 0;">Banu</h3>
+                            <p style="color: #ffcc00; font-size: 0.75rem; margin: 0; font-weight: 600;">Jungler</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pemain 2: Exp Laner -->
+                    <div class="card clickable-card" onclick="openPlayerModal('explaner')" style="background: #2a303c; border-radius: 8px; overflow: hidden; text-align: center; border-left: 4px solid #ff6600; cursor: pointer;">
+                        <!-- Ganti "foto_exp.jpg" dengan nama file asli di folder static lu, misalnya "rasya.png" -->
+                        <img src="/static/arkan.png" style="width: 100%; height: 150px; object-fit: cover; object-position: top; background: #1b1f28; display: block;">
+                        <div style="padding: 12px 10px;">
+                            <h3 style="color: white; font-size: 1rem; margin: 0 0 2px 0;">Arkan</h3>
+                            <p style="color: #ffcc00; font-size: 0.75rem; margin: 0; font-weight: 600;">Exp Laner</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pemain 3: Mid Laner -->
+                    <div class="card clickable-card" onclick="openPlayerModal('midlaner')" style="background: #2a303c; border-radius: 8px; overflow: hidden; text-align: center; border-left: 4px solid #ff6600; cursor: pointer;">
+                        <!-- Ganti "foto_mid.jpg" dengan nama file asli -->
+                        <img src="/static/ridwan.png" style="width: 100%; height: 150px; object-fit: cover; object-position: top; background: #1b1f28; display: block;">
+                        <div style="padding: 12px 10px;">
+                            <h3 style="color: white; font-size: 1rem; margin: 0 0 2px 0;">Ridwan</h3>
+                            <p style="color: #ffcc00; font-size: 0.75rem; margin: 0; font-weight: 600;">Mid Laner</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pemain 4: Roamer -->
+                    <div class="card clickable-card" onclick="openPlayerModal('roamer')" style="background: #2a303c; border-radius: 8px; overflow: hidden; text-align: center; border-left: 4px solid #ff6600; cursor: pointer;">
+                        <img src="/static/rasya.png" style="width: 100%; height: 150px; object-fit: cover; object-position: top; background: #1b1f28; display: block;">
+                        <div style="padding: 12px 10px;">
+                            <h3 style="color: white; font-size: 1rem; margin: 0 0 2px 0;">Rasya</h3>
+                            <p style="color: #ffcc00; font-size: 0.75rem; margin: 0; font-weight: 600;">Roamer</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Pemain 5: Gold Laner -->
+                    <div class="card clickable-card" onclick="openPlayerModal('goldlaner')" style="background: #2a303c; border-radius: 8px; overflow: hidden; text-align: center; border-left: 4px solid #ff6600; cursor: pointer;">
+                        <!-- Ganti "foto_gold.jpg" dengan nama file asli -->
+                        <img src="/static/aimar.png" style="width: 100%; height: 150px; object-fit: cover; object-position: top; background: #1b1f28; display: block;">
+                        <div style="padding: 12px 10px;">
+                            <h3 style="color: white; font-size: 1rem; margin: 0 0 2px 0;">Aimar</h3>
+                            <p style="color: #ffcc00; font-size: 0.75rem; margin: 0; font-weight: 600;">Gold Laner</p>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- GALERI DOKUMENTASI -->
+   <section id="galeri" class="gallery-section" style="background-color: #14171f; padding: 90px 40px; border-bottom: 4px solid #ff6600;">
+       <h2 class="center-title" style="text-align: center; margin-bottom: 50px; color: white;">DOKUMENTASI <span>KEGIATAN</span></h2>
+       <style>
+           .gallery-track::-webkit-scrollbar { height: 12px; }
+           .gallery-track::-webkit-scrollbar-track { background: #1f242d; border-radius: 10px; }
+           .gallery-track::-webkit-scrollbar-thumb { background: #ff6600; border-radius: 10px; }
+           .gallery-track::-webkit-scrollbar-thumb:hover { background: #e65c00; }
+       </style>
+       <div class="gallery-container" style="max-width: 1200px; margin: 0 auto;">
+           <div class="gallery-track" style="display: flex; gap: 30px; overflow-x: auto; padding-bottom: 25px; scroll-behavior: smooth;">
+               <!-- Item 1 -->
+               <div class="gallery-item" data-image="/static/dokumentasi.png" data-caption="Briefing Tim Sebelum Turnamen" style="flex: 0 0 350px; padding: 0; overflow: hidden; background: #1f242d; border-radius: 10px; border: 1px solid #2a303c; cursor: pointer;">
+                   <img src="/static/dokumentasi.png" alt="Briefing" style="width: 100%; height: 220px; object-fit: contain; background: #181c25; border-bottom: 2px solid #ff6600;">
+                   <p style="padding: 20px; margin: 0; font-weight: bold; color: white; text-align: center;">Pertemuan Scrim</p>
+               </div>
+               
+               <!-- Item 2 -->
+               <div class="gallery-item" data-image="/static/Pertemuan scrim.png" data-caption="Logo Kebanggaan SMAN 68" style="flex: 0 0 350px; padding: 0; overflow: hidden; background: #1f242d; border-radius: 10px; border: 1px solid #2a303c; cursor: pointer;">
+                   <img src="/static/Pertemuan scrim.png" alt="Logo 68" style="width: 100%; height: 220px; object-fit: contain; background: #181c25; border-bottom: 2px solid #ff6600;">
+                   <p style="padding: 20px; margin: 0; font-weight: bold; color: white; text-align: center;">Pertemuan Scrim</p>
+               </div>
+
+               <!-- Item 3 -->
+               <div class="gallery-item" data-image="/static/artbook kepkse.png" data-caption="Turnamen Pelajar" style="flex: 0 0 350px; padding: 0; overflow: hidden; background: #1f242d; border-radius: 10px; border: 1px solid #2a303c; cursor: pointer;">
+                   <img src="/static/artbook kepkse.png" alt="Turnamen" style="width: 100%; height: 220px; object-fit: contain; background: #181c25; border-bottom: 2px solid #ff6600;">
+                   <p style="padding: 20px; margin: 0; font-weight: bold; color: white; text-align: center;">Penyerahan Arbook</p>
+               </div>
+
+               <!-- Item 4 -->
+               <div class="gallery-item" data-image="/static/artbook.png" data-caption="Mabar Rutin" style="flex: 0 0 350px; padding: 0; overflow: hidden; background: #1f242d; border-radius: 10px; border: 1px solid #2a303c; cursor: pointer;">
+                   <img src="/static/artbook.png" alt="Mabar" style="width: 100%; height: 220px; object-fit: contain; background: #181c25; border-bottom: 2px solid #ff6600;">
+                   <p style="padding: 20px; margin: 0; font-weight: bold; color: white; text-align: center;">Penyerahan Arbook</p>
+               </div>
+           </div>
+       </div>
+   </section>
+
+    <!-- TRACK RECORD -->
+    <section id="legacy" class="legacy-section dark-section">
+        <h2 class="center-title" style="text-align: left; padding-left: 10%;">JEJAK <span>LANGKAH</span></h2>
+        <div class="timeline-container">
+            
+            <!-- Tahun 2021 -->
+            <div class="timeline-item">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-info">
+                    <h3>AWAL MULA NAMDEL ESPORT BERDIRI</h3>
+                    <p>Divisi E-sports SMAN 68 Jakarta, Awal mula perkembangan untuk menghasilkan prestasi di bidang E-sports</p>
+                </div>
+            </div>
+
+            <!-- Tahun 2022 -->
+            <div class="timeline-item">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-info">
+                    <h3>Pembentukan Team untuk mengikuti kejuaraan</h3>
+                    <p>Penyeleksian team, serta latihan intensif, dan persiapan menyeluruh untuk turnament yang akan datang</p>
+                </div>
+            </div>
+
+            <!-- Tahun 2023 (Yang Baru Ditambah) -->
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-info">
+                    <h3>Awal perjalanan turnament E-Sport</h3>
+                    <p>Komunikasi yang baik, menghasilkan prestasi yang memuaskan</p>
+                </div>
+            </div>
+
+             <!-- Tahun 2024 (Yang Baru Ditambah) -->
+            <div class="timeline-item">
+                <div class="timeline-year">2024-2025</div>
+                <div class="timeline-info">
+                    <h3>Puncak Kemenangan turnament yang di dapatkan oleh SMAN 68 Jakarta, seperti RRQ Mabar, UTA45</h3>
+                    <p>Mulai sering latihan, melakukan scrim, hingga evaluasi untuk menghasilkan kemenangan, serta komunikasi yang baik antar sesama team</p>
+                </div>
+            </div>
+
+              <!-- Tahun 2026 (Yang Baru Ditambah) -->
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-info">
+                    <h3>Perjalanan baru Kembali untuk membentuk team terbaik, dan menghasilkan team yang lebih kuat</h3>
+                    <p>Mulai dari sering  pertemuan scrim, berlatih berkomunikasi team, serta mempererat kekeluargaan</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRESTASI / ACHIEVEMENT -->
+    <section id="prestasi" class="achievement-section">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 50px; color: white;">PRESTASI <span>KAMI</span></h2>
+        <div class="achievement-grid">
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightboxImage" src="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- REKRUTMEN -->
+    <section id="join" class="join-section dark-section" style="background-color: #0d0d0d; border-top: 2px solid #222;">
+        <h2 class="center-title">REKRUTMEN <span>PEMAIN</span></h2>
+        <form action="/register" method="POST" class="join-form" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="input-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" name="nama" required placeholder="Masukkan nama kamu">
+            </div>
+            <div class="input-group">
+                <label for="role">Role Pilihan</label>
+                <select id="role" name="role">
+                    <option value="Jungler">Jungler</option>
+                    <option value="Roamer">Roamer</option>
+                    <option value="Mid Laner">Mid Laner</option>
+                    <option value="Gold Laner">Gold Laner</option>
+                    <option value="EXP Laner">EXP Laner</option>
+                    <option value="Coach/Manager">Coach / Manager</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="contact">Nomor WhatsApp</label>
+                <input type="text" id="contact" name="whatsapp" required placeholder="08xx-xxxx-xxxx">
+            </div>
+            <div class="input-group">
+                <label for="foto">Upload Bukti Rank / Winrate </label>
+                <input type="file" id="foto" name="foto_rank" accept="image/*" required style="background: #1a1a1a; padding: 12px; color: white; border-radius: 5px; border: 1px solid #333; width: 90%;">
+            </div>
+            <button type="submit" class="btn-submit" style="margin-top: 20px;">Kirim Formulir & Bukti</button>
+        </form>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="faq-section">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 50px; color: white;">FAQ <span>REKRUTMEN</span></h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Apa syarat untuk bergabung NAMDEL ESPORT?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Kamu harus merupakan siswa aktif SMAN 68 Jakarta, memiliki rank minimal Epic di MLBB, dan bersedia mengikuti jadwal latihan rutin tim.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Berapa kali latihan dalam seminggu?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Latihan rutin dilakukan 3-4 kali seminggu. Jadwal scrim biasanya setiap Sabtu dan Minggu, sedangkan hari biasa untuk review strategi dan individual practice.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Apakah ada biaya untuk bergabung?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Tidak ada biaya pendaftaran. NAMDEL ESPORT adalah divisi resmi sekolah yang didukung penuh oleh OSIS dan pihak sekolah SMAN 68 Jakarta.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Bagaimana proses seleksi pemain baru?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Setelah mendaftar via formulir, kamu akan diundang untuk tryout berupa ranked match bersama tim utama. Penilaian meliputi skill mekanik, game sense, komunikasi, dan attitude.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Role apa yang sedang dibutuhkan saat ini?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Kami selalu membuka rekrutmen untuk semua role (Jungler, EXP Laner, Mid Laner, Gold Laner, Roamer). Namun prioritas saat ini adalah Jungler dan Roamer untuk tim cadangan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KATALOG MERCHANDISE -->
+    <section id="merchandise" class="merch-section" style="background-color: #1a1f2e; padding: 90px 40px; border-bottom: 4px solid #ff6600;">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 50px; color: white;">KATALOG <span>MERCHANDISE</span></h2>
+        <div class="merch-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            <!-- Merch 1 -->
+            <div class="merch-card" style="background: #11151c; border-radius: 12px; overflow: hidden; border: 1px solid #2a303c; text-align: center; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;">
+                <img src="/static/logonest.png" alt="Jersey" style="width: 100%; height: 250px; object-fit: contain; background: #0b0f19; padding: 20px; box-sizing: border-box;">
+                <div style="padding: 25px;">
+                    <h3 style="color: white; margin: 0 0 10px 0; font-family: 'Montserrat', sans-serif;">JERSEY TIM E-SPORT 2026</h3>
+                    <p style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin: 0 0 20px 0;">Rp 150.000</p>
+                    <a href="https://wa.me/6285777103329?text=Halo%20Admin,%20saya%20ingin%20memesan%20Jersey%20Tim%20E-Sport" target="_blank" style="display: block; background: #25D366; color: white; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: bold; font-family: 'Poppins', sans-serif;">Pesan via WhatsApp ↗</a>
+                </div>
+            </div>
+            <!-- Merch 2 -->
+            <div class="merch-card" style="background: #11151c; border-radius: 12px; overflow: hidden; border: 1px solid #2a303c; text-align: center; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;">
+                <img src="/static/logo68.png" alt="Lanyard" style="width: 100%; height: 250px; object-fit: contain; background: #0b0f19; padding: 20px; box-sizing: border-box;">
+                <div style="padding: 25px;">
+                    <h3 style="color: white; margin: 0 0 10px 0; font-family: 'Montserrat', sans-serif;">LANYARD EKSKLUSIF FAMS</h3>
+                    <p style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin: 0 0 20px 0;">Rp 35.000</p>
+                    <a href="https://wa.me/6285777103329?text=Halo%20Admin,%20saya%20ingin%20memesan%20Lanyard%20Eksklusif" target="_blank" style="display: block; background: #25D366; color: white; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: bold; font-family: 'Poppins', sans-serif;">Pesan via WhatsApp ↗</a>
+                </div>
+            </div>
+            <!-- Merch 3 -->
+            <div class="merch-card" style="background: #11151c; border-radius: 12px; overflow: hidden; border: 1px solid #2a303c; text-align: center; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;">
+                <img src="/static/logonest.png" alt="T-Shirt" style="width: 100%; height: 250px; object-fit: contain; background: #0b0f19; padding: 20px; box-sizing: border-box;">
+                <div style="padding: 25px;">
+                    <h3 style="color: white; margin: 0 0 10px 0; font-family: 'Montserrat', sans-serif;">T-SHIRT SUPPORTER 68</h3>
+                    <p style="color: #ffcc00; font-weight: bold; font-size: 1.2rem; margin: 0 0 20px 0;">Rp 100.000</p>
+                    <a href="https://wa.me/6285777103329?text=Halo%20Admin,%20saya%20ingin%20memesan%20T-Shirt%20Supporter" target="_blank" style="display: block; background: #25D366; color: white; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: bold; font-family: 'Poppins', sans-serif;">Pesan via WhatsApp ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORSHIP / PARTNERSHIP -->
+    <section id="partnership" class="partner-section" style="background-color: #ffffff; padding: 90px 40px; border-bottom: 4px solid #ff6600;">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 20px; color: #111;">OFFICIAL <span>PARTNERS</span></h2>
+        <p style="text-align: center; color: #666; margin-bottom: 50px; font-family: 'Poppins', sans-serif; max-width: 700px; margin-left: auto; margin-right: auto;">Terima kasih kepada pihak sekolah, sponsor, dan mitra yang telah mendukung penuh perjalanan NAMDEL ESPORT.</p>
+        <div class="partner-grid" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 50px; max-width: 1000px; margin: 0 auto;">
+            <!-- Partner 1 -->
+            <div class="partner-logo" style="width: 180px; filter: grayscale(100%); transition: 0.3s; opacity: 0.7;">
+                <img src="/static/logo68.png" alt="SMAN 68 Jakarta" style="width: 100%; height: auto;">
+            </div>
+            <!-- Partner 2 (Placeholder) -->
+            <div class="partner-logo" style="width: 180px; filter: grayscale(100%); transition: 0.3s; opacity: 0.7;">
+                <img src="/static/logonest.png" alt="Nest Esport" style="width: 100%; height: auto;">
+            </div>
+            <!-- Partner 3 (Placeholder) -->
+             <div class="partner-logo" style="width: 180px; filter: grayscale(100%); transition: 0.3s; opacity: 0.7;">
+                <img src="/static/realme.png" alt="Nest Esport" style="width: 100%; height: auto;">
+            </div>
+            <!-- Partner 4 (Placeholder) -->
+             <div class="partner-logo" style="width: 180px; filter: grayscale(100%); transition: 0.3s; opacity: 0.7;">
+                YOUR LOGO
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://wa.me/6285777103329?text=Halo%20Humas,%20saya%20tertarik%20untuk%20menjadi%20sponsor%20tim%20Esport%20SMAN%2068" target="_blank" style="background: #111; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; font-family: 'Poppins', sans-serif;">Jadilah Mitra Kami</a>
+        </div>
+    </section>
+
+    <!-- KONTAK FOOTER -->
+    <footer id="kontak" class="footer-section" style="background-color: var(--bg-card); padding: 70px 20px; text-align: center; border-top: 2px solid var(--primary-orange);">
+        <h2>HUBUNGI <span>KAMI</span></h2>
+        <p style="color: var(--text-gray); margin-bottom: 25px;">Ada pertanyaan atau tawaran kerja sama? Hubungi Humas kami.</p>
+        <a href="https://wa.me/6285777103329" target="_blank" class="btn-wa" style="background: #25D366; color: white; padding: 14px 30px; text-decoration: none; font-weight: 800; border-radius: 50px; display: inline-block;">Chat Manajer ↗</a>
+    </footer>
+
+    <!-- SCRIPT MENU DAN LAINNYA -->
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById('megaMenu');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.match-card').forEach(function(card) {
+                card.addEventListener('click', function() {
+                    const title = card.getAttribute('data-title') || '';
+                    if (typeof openModal === 'function') {
+                        openModal(title);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.gallery-item').forEach(function(item) {
+                item.addEventListener('click', function() {
+                    const image = item.getAttribute('data-image') || '';
+                    const caption = item.getAttribute('data-caption') || '';
+                    if (typeof openLightbox === 'function') {
+                        openLightbox(image, caption);
+                    }
+                });
+            });
+        });
+    </script>
+<script src="/static/script.js?v=9999"></script>
+<!-- SCRIPT OTOMATIS FIX NOMOR WA PENDAFTAR -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Cari semua link WhatsApp yang ada di halaman admin
+        const waLinks = document.querySelectorAll('a[href^="https://wa.me/"]');
+        
+        waLinks.forEach(link => {
+            let originalHref = link.getAttribute('href');
+            
+            // Pisahkan URL dan ambil murni angkanya saja
+            let phone = originalHref.replace('https://wa.me/', '');
+            
+            // Bersihkan spasi, tanda strip (-), atau karakter aneh bawaan user
+            phone = phone.replace(/[^0-9]/g, '');
+            
+            // Kalau nomornya berawalan 0, sulap jadi 62
+            if (phone.startsWith('0')) {
+                phone = '62' + phone.substring(1);
+            }
+            
+            // Pasang kembali link yang sudah berformat +62 bersih
+            link.setAttribute('href', 'https://wa.me/' + phone);
+        });
+    });
+    </script>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#9650;</button>
+
+    <!-- SCRIPT FITUR BARU -->
+    <script>
+        // FAQ ACCORDION
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const isOpen = answer.classList.contains('open');
+            // Tutup semua dulu
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+            // Buka yang diklik (kalo belum terbuka)
+            if (!isOpen) {
+                answer.classList.add('open');
+                btn.classList.add('active');
+            }
+        }
+
+        // ANIMATED COUNTER (muncul saat di-scroll)
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const suffix = el.getAttribute('data-suffix') || '';
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                el.textContent = Math.floor(current) + suffix;
+            }, 16);
+        }
+
+        // Observer untuk trigger counter saat scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.stat-number').forEach(el => {
+                        animateCounter(el);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) statsObserver.observe(statsSection);
+
+        // SCROLL TO TOP - show/hide
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 500) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Init Radar Charts
+        const commonRadarOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                    pointLabels: { color: '#94a3b8', font: { family: 'Poppins', size: 10 } },
+                    ticks: { display: false, max: 100, min: 0, stepSize: 20 }
+                }
+            },
+            plugins: { legend: { display: false } }
+        };
+
+        const playerData = {
+            'jungler': { data: [95, 80, 95, 85, 60], color: 'rgba(255, 102, 0, 1)', bg: 'rgba(255, 102, 0, 0.4)' },
+            'explaner': { data: [75, 95, 80, 75, 85], color: 'rgba(34, 197, 94, 1)', bg: 'rgba(34, 197, 94, 0.4)' },
+            'midlaner': { data: [85, 95, 75, 85, 70], color: 'rgba(168, 85, 247, 1)', bg: 'rgba(168, 85, 247, 0.4)' },
+            'roamer': { data: [50, 95, 95, 70, 60], color: 'rgba(59, 130, 246, 1)', bg: 'rgba(59, 130, 246, 0.4)' },
+            'goldlaner': { data: [95, 85, 80, 90, 90], color: 'rgba(234, 179, 8, 1)', bg: 'rgba(234, 179, 8, 0.4)' }
+        };
+
+        let radarCharts = {};
+
+        function initPlayerCharts() {
+            Object.keys(playerData).forEach(role => {
+                const ctx = document.getElementById('radar-' + role);
+                if (ctx && !radarCharts[role]) {
+                    radarCharts[role] = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Farming', 'Teamfight', 'Objective', 'KDA', 'Push'],
+                            datasets: [{
+                                label: 'Stats',
+                                data: playerData[role].data,
+                                backgroundColor: playerData[role].bg,
+                                borderColor: playerData[role].color,
+                                borderWidth: 2,
+                                pointBackgroundColor: playerData[role].color
+                            }]
+                        },
+                        options: commonRadarOptions
+                    });
+                }
+            });
+        }
+        
+        // Use a timeout to ensure canvas dimensions are registered if modal is hidden
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(initPlayerCharts, 500);
+        });
+    </script>
+</body>
+</html>
