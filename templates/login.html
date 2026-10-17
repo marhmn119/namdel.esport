@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Manajer - NAMDEL ESPORT</title>
+    <link rel="icon" type="image/png" href="/static/logonest.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #121212; color: white; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-box { background-color: #1a1a1a; padding: 40px; border-radius: 10px; border-top: 4px solid #ff6600; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h2 { margin-bottom: 25px; color: #ffcc00; }
+        input { width: 90%; padding: 15px; margin: 10px 0; background: #0a0a0a; border: 1px solid #333; color: white; border-radius: 5px; font-family: 'Poppins', sans-serif;}
+        input:focus { outline: none; border-color: #ff6600; }
+        button { width: 100%; padding: 15px; margin-top: 20px; background: #ff6600; color: white; border: none; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.3s; font-size: 1rem; }
+        button:hover { background: #ffcc00; color: black; }
+        .back-link { display: block; margin-top: 20px; color: #b0b0b0; text-decoration: none; font-size: 0.9rem; }
+        .back-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>PORTAL MANAJER</h2>
+        <form action="/login" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">MASUK</button>
+        </form>
+        <a href="/" class="back-link">← Kembali ke Halaman Utama</a>
+    </div>
+</body>
+</html>

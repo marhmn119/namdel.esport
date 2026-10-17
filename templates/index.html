@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAMDEL ESPORT - SMAN 68</title>
+    <link rel="icon" type="image/png" href="{{ static_url('logonest.png') }}">
+    <link rel="manifest" href="{{ static_url('manifest.json') }}">
+    <meta name="theme-color" content="#ff6600">
+    <link rel="stylesheet" href="{{ static_url('style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,900&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="NAMDEL ESPORT - Tim e-sports SMAN 68 Jakarta. Turnamen, roster, komunitas, dan pendaftaran pemain.">
+    <link rel="canonical" href="{{ site_url }}">
+    <meta property="og:title" content="NAMDEL ESPORT - SMAN 68">
+    <meta property="og:description" content="Tim e-sports SMAN 68 Jakarta, jadwal turnamen, galeri, dan rekrutmen pemain.">
+    <meta property="og:image" content="{{ site_image_url }}">
+    <meta property="og:url" content="{{ site_url }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NAMDEL ESPORT - SMAN 68">
+    <meta name="twitter:description" content="Tim e-sports SMAN 68 Jakarta, jadwal turnamen, galeri, dan rekrutmen pemain.">
+    <meta name="twitter:image" content="{{ site_image_url }}">
+    <script type="application/ld+json">{{ organization_schema|tojson }}</script>
+</head>
+<body>
+    <!-- FLASH MESSAGES (notifikasi pendaftaran / login) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- LOADING SCREEN -->
+<div id="loader"><img src="{{ static_url('logonest.png') }}" alt="NEST Logo" class="loader-logo" width="470" height="531"></div>
+
+    <!-- NAVBAR UTAMA -->
+    <nav>
+        <div class="logo-container">
+            <img src="{{ static_url('logo68.png') }}" alt="SMAN 68" class="nav-logo nav-logo-school" width="501" height="512">
+            <img src="{{ static_url('logonest.png') }}" alt="NEST" class="nav-logo nav-logo-team" width="470" height="531">
+        </div>
+
+        <div class="nav-links-center">
+            <a href="#jadwal">{{ t.schedule }}</a>
+            <a href="#statistik">{{ t.stats }}</a>
+            <a href="#prestasi">{{ t.achievements }}</a>
+            <a href="#roster">{{ t.team }}</a>
+        </div>
+
+        <div class="nav-right-controls">
+            <button class="menu-btn" id="menuBtn" aria-controls="megaMenu" aria-expanded="false">
+                {{ t.menu }} <span>☰</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MEGA MENU DROPDOWN -->
+    <div id="megaMenu" class="mega-menu-panel" hidden>
+        <div class="mega-menu-grid">
+            <div class="mega-menu-column">
+                <a href="#home">Beranda <span aria-hidden="true">↗</span></a>
+                <a href="#jadwal">Jadwal Turnamen</a>
+                <a href="#statistik">Statistik Tim</a>
+                <a href="#leaderboard">Leaderboard Scrim</a>
+            </div>
+            <div class="mega-menu-column">
+                <a href="#prestasi">Prestasi</a>
+                <a href="#roster">Roster Tim Utama</a>
+                <a href="#galeri">Dokumentasi Kegiatan</a>
+            </div>
+            <div class="mega-menu-column">
+                <a href="#komunitas">Gabung Komunitas</a>
+                <a href="#merchandise">Katalog Merchandise</a>
+                <a href="#join">Rekrutmen Pemain</a>
+            </div>
+            <div class="mega-menu-column">
+                <a href="#faq">FAQ Rekrutmen</a>
+                <a href="#partnership">Mitra / Sponsor</a>
+                <a href="#kontak">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+
+ <!-- HERO SECTION -->
+    <header id="home" class="hero">
+        <!-- BAGIAN ATAS: Tagline Kiri & Kanan -->
+        <div class="hero-top-row">
+            <span class="tagline">FROM SMAN 68, FOR THE CHAMPIONSHIP.</span>
+            <span class="tagline tagline-est">EST. 2021 - SEKARANG</span>
+        </div>
+
+        <div class="hero-glow-effect"></div>
+        
+        <div class="hero-left">
+            <p class="hero-eyebrow">SCHOOL ESPORTS • JAKARTA</p>
+            <h1>SATU TIM<br>SATU AMBISI<br><span>NAMDEL ESPORT</span></h1>
+            <p class="hero-description">Tempat strategi, kerja sama, dan mental juara bertemu. Dukung perjalanan esports SMAN 68 Jakarta.</p>
+            <div class="hero-actions">
+                <a class="hero-action hero-action-primary" href="#roster">LIHAT ROSTER <span aria-hidden="true">↗</span></a>
+                <a class="hero-action hero-action-secondary" href="#jadwal">JADWAL MATCH</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="{{ static_url('logonest.png') }}" alt="NEST Big Logo" class="hero-big-logo" width="470" height="531">
+        </div>
+    </header>
+
+    <!-- TICKER PENGUMUMAN -->
+    <div class="ticker-bar">
+        <div class="ticker-content">
+            {% if tickers %}
+                {% for ticker in tickers %}
+                <span>{{ ticker['content'] }}</span>
+                {% endfor %}
+            {% else %}
+                <span>OPEN RECRUITMENT SEASON 2026 - DAFTAR SEKARANG!</span>
+                <span>SCRIM RUTIN SETIAP SABTU &amp; MINGGU</span>
+                <span>FOLLOW INSTAGRAM @nest.esports UNTUK UPDATE TERBARU</span>
+            {% endif %}
+        </div>
+    </div>
+
+<!-- SALAM PEMBUKA (SLIDER - Latar Putih, Teks Pas, Ukuran Stabil) -->
+    <section id="salam" class="salam-section">
+        
+        <!-- Tombol Slider Kiri -->
+        <button class="slider-btn prev-btn" id="prevSlide" type="button" aria-label="Slide sebelumnya">&#10094;</button>
+        
+        <!-- Konten Teks -->
+        <div class="salam-content-wrapper" id="salamContent">
+            <h2 class="center-title" id="salamTitle">WELCOME TO <span>NAMDEL ESPORT</span></h2>
+            <p class="salam-text" id="salamText">Selamat datang di web resmi divisi E-Sports SMAN 68 Jakarta. Kami mencari talenta-talenta terbaik yang memiliki mental juara, disiplin tinggi, dan kemauan keras untuk membawa nama sekolah ke puncak arena kompetitif.</p>
+        </div>
+        
+        <!-- Tombol Slider Kanan -->
+        <button class="slider-btn next-btn" id="nextSlide" type="button" aria-label="Slide berikutnya">&#10095;</button>
+        
+        <!-- Indikator Dot (Terkunci presisi di tengah bawah) -->
+        <div class="slide-indicators" role="group" aria-label="Pilih slide">
+            <button type="button" class="indicator-dot active" aria-label="Tampilkan slide 1" aria-current="true"></button>
+            <button type="button" class="indicator-dot" aria-label="Tampilkan slide 2" aria-current="false"></button>
+            <button type="button" class="indicator-dot" aria-label="Tampilkan slide 3" aria-current="false"></button>
+        </div>
+    </section>
+
+    <!-- JADWAL TURNAMEN -->
+    <section id="jadwal" class="schedule-section">
+        <div class="schedule-container">
+            <div class="schedule-left">
+                <p class="section-subtitle">NEXT UP / MATCH CENTER</p>
+                <h2>
+                    {{ t.schedule_title }}
+                </h2>
+            </div>
+
+            <div class="schedule-right">
+                <div class="match-header">
+                    <span>PERTANDINGAN TERBARU</span>
+                    <span>WIB / UTC+7</span>
+                </div>
+
+                {% for match in matches %}
+                <div class="match-card" role="button" tabindex="0" onclick="openModal(this)"
+                     data-id="{{ match['id'] }}" data-title="{{ match['title'] }}" data-competition="{{ match['competition'] }}"
+                     data-home="{{ match['team_home'] }}" data-away="{{ match['team_away'] }}"
+                     data-description="{{ match['description'] or '' }}" data-status="{{ match['status'] }}"
+                     data-score="{{ match['score_home'] }} - {{ match['score_away'] }}"
+                     data-votes-home="{{ match['votes_home'] }}" data-votes-away="{{ match['votes_away'] }}"
+                     data-home-percent="{{ match['home_percent'] }}"                      data-away-percent="{{ match['away_percent'] }}"
+                     data-targetdate="{{ match['date'] }}T{{ (match['time'] or '00:00:00')[:8] }}+07:00">
+                    <div class="match-date">{{ match['date']|format_date_id }}</div>
+                    <div class="match-info">
+                        <p class="league">{{ match['competition'] }}</p>
+                        <h3>{{ match['title'] }}</h3>
+                        <p class="match-timer-text">⏱️ <span class="countdown-clock">Menghitung waktu...</span></p>
+                        {% if match['status'] == 'finished' %}<p class="match-score">{{ match['team_home'] }} {{ match['score_home'] }} - {{ match['score_away'] }} {{ match['team_away'] }}</p>{% endif %}
+                    </div>
+                    <div class="match-time">{{ (match['time'] or '')|format_time_id }} WIB ↗</div>
+                </div>
+                {% else %}
+                <div class="schedule-empty-state">
+                    <div class="empty-state-icon">📅</div>
+                    <h3>Belum Ada Jadwal Pertandingan</h3>
+                    <p>Jadwal pertandingan akan segera diumumkan. Sambil menunggu, tonton highlight pertandingan terakhir kami!</p>
+                    <a href="#media-center" class="empty-state-cta">Tonton Highlight ↗</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <div id="matchDetailModal" class="detail-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="matchModalTitle" onclick="if(event.target === this) closeModal()">
+        <div class="detail-modal-content">
+            <button type="button" class="detail-modal-close" onclick="closeModal()" aria-label="Tutup">&times;</button>
+            <p id="matchModalCompetition" class="section-subtitle"></p>
+            <h2 id="matchModalTitle"></h2>
+            <p id="matchModalTeams"></p>
+            <p id="matchModalDescription"></p>
+            <div id="predictionBlock">
+                <h3>{{ t.vote }}</h3>
+                <p><span id="homeVoteLabel"></span> <span id="homeVotePercent"></span>%</p>
+                <progress id="homeVoteProgress" max="100" value="0"></progress>
+                <p><span id="awayVoteLabel"></span> <span id="awayVotePercent"></span>%</p>
+                <progress id="awayVoteProgress" max="100" value="0"></progress>
+                <form id="predictionForm" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" name="winner" id="voteHome"></button>
+                    <button type="submit" name="winner" id="voteAway"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEDIA CENTER / LIVE STREAM -->
+    <section id="media-center" class="media-section">
+        <div class="media-section-inner">
+            <div class="media-section-header">
+                <h2 class="center-title">MATCH <span>VODS &amp; HIGHLIGHTS</span></h2>
+                <p>Saksikan kembali pertandingan dan cuplikan kegiatan NAMDEL ESPORT.</p>
+            </div>
+            
+            <div class="media-grid">
+                <!-- Video Utama (Live / Highlight terbaru) -->
+                <div class="media-video-card">
+                    <div class="media-video-wrapper">
+                        <!-- Embed YouTube Placeholder -->
+                        <iframe src="{{ highlight_video_url }}" title="Rekaman pertandingan ESI Jakarta" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="media-video-info">
+                        <span class="media-badge">REKAMAN</span>
+                        <span class="media-badge-subtitle">Turnamen Pelajar Se-Jakarta</span>
+                        <h3 class="media-video-title">ESI JAKARTA</h3>
+                    </div>
+                </div>
+
+                <!-- Daftar VODs / Highlight -->
+                <div class="media-sidebar">
+                    <h3 class="media-sidebar-title">Dokumentasi Pilihan</h3>
+                    
+                    <!-- Item 1 -->
+                    <article class="highlight-card" role="button" tabindex="0" data-image="{{ static_url('pertemuan-scrim.png') }}" data-caption="Pertemuan Scrim" aria-label="Buka gambar Pertemuan Scrim">
+                        <div class="highlight-thumbnail">
+                            <img loading="lazy" src="{{ static_url('pertemuan-scrim.png') }}" alt="Dokumentasi pertemuan scrim" width="1280" height="961">
+                        </div>
+                        <div class="highlight-copy">
+                            <h4>Pertemuan Scrim</h4>
+                            <span>Sparing Turnamen</span>
+                        </div>
+                    </article>
+
+                    <!-- Item 2 -->
+                    <article class="highlight-card" role="button" tabindex="0" data-image="{{ static_url('banu.png') }}" data-caption="Profil Banu" aria-label="Buka gambar Profil Banu">
+                        <div class="highlight-thumbnail">
+                            <img loading="lazy" src="{{ static_url('banu.png') }}" alt="Potret Banu" width="375" height="666">
+                        </div>
+                        <div class="highlight-copy">
+                            <h4>Profil Banu</h4>
+                            <span>Jungler</span>
+                        </div>
+                    </article>
+
+                    <!-- Item 3 -->
+                    <article class="highlight-card" role="button" tabindex="0" data-image="{{ static_url('artbook-kepkse.png') }}" data-caption="Penyerahan Artbook" aria-label="Buka gambar Penyerahan Artbook">
+                        <div class="highlight-thumbnail">
+                            <img loading="lazy" src="{{ static_url('artbook-kepkse.png') }}" alt="Dokumentasi kegiatan pelajar" width="1280" height="960">
+                        </div>
+                        <div class="highlight-copy">
+                            <h4>Penyerahan Artbook</h4>
+                            <span>Dokumentasi Kegiatan</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTIK TIM -->
+    <section id="statistik" class="stats-section">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 50px; color: white;">{{ t.stats_title }}</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">⚔️</div>
+                <div class="stat-number" data-target="{{ total_matches }}">{{ total_matches }}</div>
+                <div class="stat-label">Match Selesai</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number" data-target="{{ winrate }}" data-suffix="%">{{ winrate }}%</div>
+                <div class="stat-label">Winrate</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🥇</div>
+                <div class="stat-number" data-target="{{ achievement_count }}">{{ achievement_count }}</div>
+                <div class="stat-label">Prestasi Terdaftar</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number" data-target="260">0</div>
+                <div class="stat-label">Anggota FAMS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTIK HERO TURNAMEN -->
+    <section id="statistik-hero" class="hero-stats-section" aria-labelledby="heroStatsTitle">
+        <div class="hero-stats-heading">
+            <div>
+                <p class="hero-stats-eyebrow">STATISTIK</p>
+                <h2 id="heroStatsTitle">HEROES</h2>
+            </div>
+            <div class="hero-stats-filter">
+                <label for="heroStatsEvent">Turnamen / Event</label>
+                <select id="heroStatsEvent" name="hero_event">
+                    <option value="all" {% if selected_hero_event == 'all' %}selected{% endif %}>Semua turnamen</option>
+                    {% for event in hero_stat_events %}
+                    <option value="event:{{ event['event_name']|lower }}" {% if selected_hero_event == 'event:' ~ event['event_name']|lower %}selected{% endif %}>{{ event['event_name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="hero-stats-tabs" aria-label="Kategori statistik">
+            <span class="active" aria-current="page">Heroes</span>
+        </div>
+        <div class="hero-top-grid">
+            <section class="hero-top-panel">
+                <h3>TOP 5 PICK</h3>
+                <ol id="heroTopPickList">
+                    {% for hero in hero_top_pick %}
+                    <li><span class="hero-top-rank">{{ loop.index }}</span><span class="hero-table-icon">{{ hero['hero_name'][:2]|upper }}</span><strong>{{ hero['hero_name'] }}</strong><span class="hero-top-value">{{ hero['picks'] }}</span></li>
+                    {% else %}
+                    <li class="hero-top-empty">Belum ada data pick.</li>
+                    {% endfor %}
+                </ol>
+            </section>
+            <section class="hero-top-panel">
+                <h3>TOP 5 BAN</h3>
+                <ol id="heroTopBanList">
+                    {% for hero in hero_top_ban %}
+                    <li><span class="hero-top-rank">{{ loop.index }}</span><span class="hero-table-icon">{{ hero['hero_name'][:2]|upper }}</span><strong>{{ hero['hero_name'] }}</strong><span class="hero-top-value">{{ hero['bans'] }}</span></li>
+                    {% else %}
+                    <li class="hero-top-empty">Belum ada data ban.</li>
+                    {% endfor %}
+                </ol>
+            </section>
+            <section class="hero-top-panel">
+                <h3>TOP 5 WIN RATE</h3>
+                <ol id="heroTopWinrateList">
+                    {% for hero in hero_top_winrate %}
+                    <li><span class="hero-top-rank">{{ loop.index }}</span><span class="hero-table-icon">{{ hero['hero_name'][:2]|upper }}</span><strong>{{ hero['hero_name'] }}</strong><span class="hero-top-value">{{ hero['winrate']|int if hero['winrate'] == hero['winrate']|int else '%.1f'|format(hero['winrate']) }}%</span></li>
+                    {% else %}
+                    <li class="hero-top-empty">Perlu minimal 5 pick untuk masuk peringkat.</li>
+                    {% endfor %}
+                </ol>
+            </section>
+        </div>
+        <p class="hero-stats-note">Top 5 win rate dihitung dari hero dengan minimal 5 pick.</p>
+        <div class="hero-statistics-panel">
+            <h3>HERO STATISTICS</h3>
+            <div class="hero-statistics-scroll">
+                <table class="hero-statistics-table" id="heroStatisticsTable">
+                    <thead>
+                        <tr>
+                            <th scope="col"><button type="button" data-sort="name">HERO <span aria-hidden="true">↕</span></button></th>
+                            <th scope="col"><button type="button" data-sort="picks">PICK <span aria-hidden="true">↕</span></button></th>
+                            <th scope="col"><button type="button" data-sort="bans">BAN <span aria-hidden="true">↕</span></button></th>
+                            <th scope="col"><button type="button" data-sort="wins">WIN <span aria-hidden="true">↕</span></button></th>
+                            <th scope="col"><button type="button" data-sort="winrate">WIN RATE <span aria-hidden="true">↕</span></button></th>
+                        </tr>
+                    </thead>
+                    <tbody id="heroStatisticsBody">
+                        {% for hero in hero_statistics %}
+                        <tr data-name="{{ hero['hero_name']|lower }}" data-picks="{{ hero['picks'] }}" data-bans="{{ hero['bans'] }}" data-wins="{{ hero['wins'] }}" data-winrate="{{ hero['winrate'] }}">
+                            <th scope="row"><span class="hero-table-icon">{{ hero['hero_name'][:2]|upper }}</span>{{ hero['hero_name'] }}</th>
+                            <td>{{ hero['picks'] }}</td>
+                            <td>{{ hero['bans'] }}</td>
+                            <td>{{ hero['wins'] }}</td>
+                            <td>{{ hero['winrate']|int if hero['winrate'] == hero['winrate']|int else '%.1f'|format(hero['winrate']) }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script id="heroStatisticsData" type="application/json">{{ hero_statistics_by_event|tojson }}</script>
+    </section>
+
+    <!-- LEADERBOARD SCRIM INTERNAL -->
+    <section id="leaderboard" class="leaderboard-section">
+        <div class="leaderboard-container">
+            <div class="leaderboard-heading">
+                <div>
+                    <p class="leaderboard-eyebrow">SCRIM INTERNAL • SMAN 68</p>
+                    <h2 class="center-title">LIVE <span>LEADERBOARD</span></h2>
+                    <p class="leaderboard-description">Pantau poin, rekap KDA, dan MVP mingguan dari scrim antar-kelas.</p>
+                </div>
+                <aside class="weekly-mvp-card" aria-live="polite">
+                    <span class="mvp-label">🏆 MVP MINGGU INI</span>
+                    <strong id="weeklyMvpName">Belum ada MVP</strong>
+                    <span id="weeklyMvpMeta">Catatan scrim minggu ini akan tampil di sini.</span>
+                </aside>
+            </div>
+
+            <div class="leaderboard-toolbar">
+                <div class="leaderboard-tabs" role="group" aria-label="Urutkan leaderboard">
+                    <button type="button" class="leaderboard-tab active" data-sort="points">Poin</button>
+                    <button type="button" class="leaderboard-tab" data-sort="kda">KDA</button>
+                    <button type="button" class="leaderboard-tab" data-sort="mvp">MVP Mingguan</button>
+                </div>
+                <span class="leaderboard-updated" id="leaderboardUpdated" aria-live="polite">Memuat data...</span>
+            </div>
+
+            <div class="leaderboard-table-wrap">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Pemain / Kelas</th>
+                            <th scope="col">Poin</th>
+                            <th scope="col">K</th>
+                            <th scope="col">D</th>
+                            <th scope="col">A</th>
+                            <th scope="col">KDA</th>
+                            <th scope="col">MVP Minggu Ini</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardRows">
+                        <tr><td colspan="8" class="leaderboard-empty">Mengambil data leaderboard...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="leaderboard-footnote">Data diperbarui otomatis setiap 30 detik. Statistik dicatat oleh admin setelah scrim.</p>
+        </div>
+    </section>
+
+<!-- GABUNG KOMUNITAS (Hanya WhatsApp & Instagram) -->
+    <section id="komunitas" class="community-section community-section-styled">
+        <div class="community-content community-inner">
+            
+            <!-- Teks Kiri -->
+            <div class="community-text-left community-text-block">
+                <h2>GABUNG<br><span>NAMDEL FAMS</span></h2>
+                <p>Jadilah bagian dari perjalanan kami. Dapatkan update info turnamen terbaru, mabar bareng, dan dukung tim kebanggaan SMAN 68 Jakarta!</p>
+            </div>
+            
+            <!-- Tombol Kanan -->
+            <div class="community-cards-right community-buttons">
+                <a href="https://whatsapp.com/channel/0029VbD4U4zAu3aIU58Wzm2v" target="_blank" rel="noopener noreferrer" class="community-wa-btn">
+                    <div class="community-link-icon">💬</div>
+                    <div>
+                        <h3 class="community-link-title">GABUNG WHATSAPP</h3>
+                        <p class="community-link-desc">Saluran &amp; Grup Resmi Komunitas ↗</p>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/nest.esports" target="_blank" rel="noopener noreferrer" class="community-ig-btn">
+                    <div class="community-link-icon">📸</div>
+                    <div>
+                        <h3 class="community-link-title">FOLLOW INSTAGRAM</h3>
+                        <p class="community-link-desc">Update Info &amp; Dokumentasi Terbaru ↗</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+                
+    <!-- MODAL PROFIL PEMAIN -->
+    <div id="playerProfileModal" class="modal player-profile-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Profil pemain" onclick="if(event.target === this) closePlayerModal()">
+        <div class="modal-content player-profile-modal-content">
+            <button type="button" onclick="closePlayerModal()" class="close-btn" aria-label="Tutup profil pemain">&times;</button>
+
+            {% for player in roster %}
+            <div class="profile-slide-item" id="profile-{{ player.role_id }}" style="display: none;">
+                <div class="player-profile-summary">
+                    <div class="player-profile-copy">
+                        <h2 class="player-name">{{ player.name }}</h2>
+                        <div class="player-role-tag">{{ player.role_tag }}</div>
+                        <p class="player-description">{{ player.description }}</p>
+                        <div class="player-signature" style="margin-top: 20px;">
+                            <strong style="color: #ffcc00; display: block; margin-bottom: 10px;">Signature Heroes:</strong>
+                            <div class="hero-showcase">
+                                {% for hero in player.signature_heroes %}
+                                <div class="hero-item">
+                                    <img src="{{ static_url(hero.img) }}" alt="{{ hero.name }}" class="hero-img">
+                                    <div class="hero-stats">
+                                        <span class="hero-name">{{ hero.name }}</span>
+                                        <span class="hero-wr">{{ hero.wr }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <img loading="lazy" class="player-portrait" src="{{ static_url(player.photo) }}" alt="{{ player.name }}" width="375" height="666">
+                </div>
+                <div class="player-stat-panel">
+                    <h3>Statistik Gaya Main</h3>
+                    <div class="player-chart-wrap"><canvas id="radar-{{ player.role_id }}" data-stats="{{ player.stats }}"></canvas></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+<!-- ROSTER TIM KITA -->
+    <section id="roster" class="roster-section roster-section-styled">
+        <div class="roster-container">
+            <!-- KATEGORI TIM 1: NAMDEL ALPHA -->
+            <div class="team-roster-group" style="margin-bottom: 50px;">
+                <div class="roster-heading">
+                    <div>
+                        <p class="roster-eyebrow">NEST (1) <span>•</span> TIM UTAMA</p>
+                        <h2 class="roster-title">SANG <span>ROSTER</span></h2>
+                    </div>
+                    <a class="roster-all-link" href="#roster-lineup" hidden>SEMUA SQUAD <span aria-hidden="true">→</span></a>
+                </div>
+                
+                <!-- INI KUNCI BIAR KARTU BERJEJER 5 KOLOM (JANGAN SAMPAI KEHAPUS) -->
+                <div class="roster-grid" id="roster-lineup">
+                    {% for player in roster %}
+                    <div class="card clickable-card roster-card" role="button" tabindex="0" aria-label="Lihat profil {{ player.name }}, {{ player.role }}" onclick="openPlayerModal('{{ player.role_id }}', this)">
+                        <img loading="lazy" src="{{ static_url(player.photo) }}" alt="{{ player.name }}, {{ player.role }}" width="375" height="666" class="roster-card-img">
+                        <div class="roster-card-info">
+                            <h3 class="roster-card-name">{{ player.name }}</h3>
+                            <p class="roster-card-role">{{ player.role }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- GALERI DOKUMENTASI -->
+   <section id="galeri" class="gallery-section gallery-section-styled">
+       <h2 class="center-title">DOKUMENTASI <span>KEGIATAN</span></h2>
+       <div class="gallery-container gallery-container-styled">
+           <div class="gallery-track gallery-track-styled">
+               <!-- Item 1 -->
+               <div class="gallery-item gallery-item-styled" role="button" tabindex="0" data-image="{{ static_url('dokumentasi.png') }}" data-caption="Briefing Tim Sebelum Turnamen" aria-label="Buka gambar Briefing Tim Sebelum Turnamen">
+                   <img loading="lazy" src="{{ static_url('dokumentasi.png') }}" alt="Briefing tim sebelum turnamen" width="960" height="1280" class="gallery-item-img">
+                   <p class="gallery-item-caption">Briefing Tim Sebelum Turnamen</p>
+               </div>
+               
+               <!-- Item 2 -->
+               <div class="gallery-item gallery-item-styled" role="button" tabindex="0" data-image="{{ static_url('pertemuan-scrim.png') }}" data-caption="Pertemuan Scrim" aria-label="Buka gambar Pertemuan Scrim">
+                   <img loading="lazy" src="{{ static_url('pertemuan-scrim.png') }}" alt="Pertemuan scrim tim" width="1280" height="961" class="gallery-item-img">
+                   <p class="gallery-item-caption">Pertemuan Scrim</p>
+               </div>
+
+               <!-- Item 3 -->
+               <div class="gallery-item gallery-item-styled" role="button" tabindex="0" data-image="{{ static_url('artbook-kepkse.png') }}" data-caption="Penyerahan Artbook" aria-label="Buka gambar Penyerahan Artbook">
+                   <img loading="lazy" src="{{ static_url('artbook-kepkse.png') }}" alt="Penyerahan artbook" width="1280" height="960" class="gallery-item-img">
+                   <p class="gallery-item-caption">Penyerahan Artbook</p>
+               </div>
+
+               <!-- Item 4 -->
+               <div class="gallery-item gallery-item-styled" role="button" tabindex="0" data-image="{{ static_url('artbook.png') }}" data-caption="Foto Tim NEST" aria-label="Buka gambar Foto Tim NEST">
+                   <img loading="lazy" src="{{ static_url('artbook.png') }}" alt="Foto tim NEST" width="1280" height="960" class="gallery-item-img">
+                   <p class="gallery-item-caption">Foto Tim NEST</p>
+               </div>
+           </div>
+       </div>
+   </section>
+
+    <!-- TRACK RECORD -->
+    <section id="legacy" class="legacy-section dark-section">
+        <h2 class="center-title" style="text-align: left; padding-left: 10%;">JEJAK <span>LANGKAH</span></h2>
+        <div class="timeline-container">
+            
+            <!-- Tahun 2021 -->
+            <div class="timeline-item">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-info">
+                    <h3>AWAL MULA NAMDEL ESPORT BERDIRI</h3>
+                    <p>Divisi E-sports SMAN 68 Jakarta, Awal mula perkembangan untuk menghasilkan prestasi di bidang E-sports</p>
+                </div>
+            </div>
+
+            <!-- Tahun 2022 -->
+            <div class="timeline-item">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-info">
+                    <h3>Pembentukan Team untuk mengikuti kejuaraan</h3>
+                    <p>Penyeleksian tim, serta latihan intensif, dan persiapan menyeluruh untuk turnamen yang akan datang.</p>
+                </div>
+            </div>
+
+            <!-- Tahun 2023 (Yang Baru Ditambah) -->
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-info">
+                    <h3>Awal perjalanan turnamen E-Sport</h3>
+                    <p>Komunikasi yang baik, menghasilkan prestasi yang memuaskan</p>
+                </div>
+            </div>
+
+             <!-- Periode 2024-2025 -->
+            <div class="timeline-item">
+                <div class="timeline-year">2024-2025</div>
+                <div class="timeline-info">
+                    <h3>Pengembangan Tim dan Partisipasi Kompetisi</h3>
+                    <p>Tim melanjutkan latihan, scrim, dan evaluasi strategi untuk meningkatkan kerja sama.</p>
+                </div>
+            </div>
+
+              <!-- Tahun 2026 (Yang Baru Ditambah) -->
+            <div class="timeline-item">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-info">
+                    <h3>Perjalanan baru Kembali untuk membentuk team terbaik, dan menghasilkan team yang lebih kuat</h3>
+                    <p>Mulai dari sering  pertemuan scrim, berlatih berkomunikasi team, serta mempererat kekeluargaan</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRESTASI / ACHIEVEMENT -->
+    <section id="prestasi" class="achievement-section">
+        <h2 class="center-title">{{ t.achievement_title }}</h2>
+        <div class="achievement-grid">
+            {% for achievement in achievements %}
+            <article class="achievement-card">
+                <div class="trophy-icon">{{ achievement['icon'] }}</div>
+                <div class="achievement-title">{{ achievement['title'] }}</div>
+                <div class="achievement-event">{{ achievement['event'] }}</div>
+                <div class="achievement-year">{{ achievement['year'] }}</div>
+            </article>
+            {% else %}
+            <p style="grid-column: 1 / -1; text-align: center; color: #94a3b8;">Prestasi baru akan segera diumumkan.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxCaption" onclick="if(event.target === this) closeLightbox()">
+        <button type="button" class="close-lightbox" onclick="closeLightbox()" aria-label="Tutup gambar">&times;</button>
+        <img class="lightbox-content" id="lightboxImage" src="" alt="">
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+
+    <!-- REKRUTMEN -->
+    <section id="join" class="join-section dark-section">
+        <h2 class="center-title">{{ t.join_title }}</h2>
+        <form action="/register" method="POST" class="join-form" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="input-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" name="nama" required placeholder="Masukkan nama kamu">
+            </div>
+            <div class="input-group">
+                <label for="role">Role Pilihan</label>
+                <select id="role" name="role">
+                    <option value="Jungler">Jungler</option>
+                    <option value="Roamer">Roamer</option>
+                    <option value="Mid Laner">Mid Laner</option>
+                    <option value="Gold Laner">Gold Laner</option>
+                    <option value="EXP Laner">EXP Laner</option>
+                    <option value="Coach/Manager">Coach / Manager</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="contact">Nomor WhatsApp</label>
+                <input type="text" id="contact" name="whatsapp" required placeholder="08xx-xxxx-xxxx">
+            </div>
+            <div class="input-group">
+                <label for="foto">Upload Bukti Rank / Winrate </label>
+                <input type="file" id="foto" name="foto_rank" accept=".jpg,.jpeg,.png,.webp" required class="file-input-styled">
+            </div>
+            <button type="submit" class="btn-submit" style="margin-top: 20px;">Kirim Formulir &amp; Bukti</button>
+        </form>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="faq-section">
+        <h2 class="center-title">FAQ <span>REKRUTMEN</span></h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-1">
+                    Apa syarat untuk bergabung NAMDEL ESPORT?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-1" aria-hidden="true">
+                    <p>Kamu harus merupakan siswa aktif SMAN 68 Jakarta, memiliki rank minimal Epic di MLBB, dan bersedia mengikuti jadwal latihan rutin tim.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-2">
+                    Berapa kali latihan dalam seminggu?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-2" aria-hidden="true">
+                    <p>Latihan rutin dilakukan 3-4 kali seminggu. Jadwal scrim biasanya setiap Sabtu dan Minggu, sedangkan hari biasa untuk review strategi dan individual practice.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-3">
+                    Apakah ada biaya untuk bergabung?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-3" aria-hidden="true">
+                    <p>Tidak ada biaya pendaftaran. NAMDEL ESPORT adalah divisi resmi sekolah yang didukung penuh oleh OSIS dan pihak sekolah SMAN 68 Jakarta.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-4">
+                    Bagaimana proses seleksi pemain baru?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-4" aria-hidden="true">
+                    <p>Setelah mendaftar via formulir, kamu akan diundang untuk tryout berupa ranked match bersama tim utama. Penilaian meliputi skill mekanik, game sense, komunikasi, dan attitude.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-answer-5">
+                    Role apa yang sedang dibutuhkan saat ini?
+                    <span class="faq-toggle">+</span>
+                </button>
+                <div class="faq-answer" id="faq-answer-5" aria-hidden="true">
+                    <p>Kami selalu membuka rekrutmen untuk semua role (Jungler, EXP Laner, Mid Laner, Gold Laner, Roamer). Namun prioritas saat ini adalah Jungler dan Roamer untuk tim cadangan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KATALOG MERCHANDISE -->
+    <section id="merchandise" class="merch-section merch-section-styled">
+        <h2 class="center-title">KATALOG <span>MERCHANDISE</span></h2>
+        <div class="merch-grid merch-grid-styled">
+            <!-- Merch 1 -->
+            <div class="merch-card merch-card-styled">
+                <img loading="lazy" src="{{ static_url('logonest.png') }}" alt="Jersey" width="470" height="531" class="merch-card-img">
+                <div class="merch-card-body">
+                    <h3 class="merch-card-title">JERSEY TIM E-SPORT 2026</h3>
+                    <p class="merch-card-price">Rp 150.000</p>
+                    <a href="https://wa.me/{{ whatsapp_number }}?text=Halo%20Admin,%20saya%20ingin%20memesan%20Jersey%20Tim%20E-Sport" target="_blank" rel="noopener noreferrer" class="merch-card-wa-btn">Pesan via WhatsApp ↗</a>
+                </div>
+            </div>
+            <!-- Merch 2 -->
+            <div class="merch-card merch-card-styled">
+                <img loading="lazy" src="{{ static_url('logo68.png') }}" alt="Lanyard" width="501" height="512" class="merch-card-img">
+                <div class="merch-card-body">
+                    <h3 class="merch-card-title">LANYARD EKSKLUSIF FAMS</h3>
+                    <p class="merch-card-price">Rp 35.000</p>
+                    <a href="https://wa.me/{{ whatsapp_number }}?text=Halo%20Admin,%20saya%20ingin%20memesan%20Lanyard%20Eksklusif" target="_blank" rel="noopener noreferrer" class="merch-card-wa-btn">Pesan via WhatsApp ↗</a>
+                </div>
+            </div>
+            <!-- Merch 3 -->
+            <div class="merch-card merch-card-styled">
+                <img loading="lazy" src="{{ static_url('logonest.png') }}" alt="T-Shirt" width="470" height="531" class="merch-card-img">
+                <div class="merch-card-body">
+                    <h3 class="merch-card-title">T-SHIRT SUPPORTER 68</h3>
+                    <p class="merch-card-price">Rp 100.000</p>
+                    <a href="https://wa.me/{{ whatsapp_number }}?text=Halo%20Admin,%20saya%20ingin%20memesan%20T-Shirt%20Supporter" target="_blank" rel="noopener noreferrer" class="merch-card-wa-btn">Pesan via WhatsApp ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORSHIP / PARTNERSHIP -->
+    <section id="partnership" class="partner-section">
+        <h2 class="center-title" style="text-align: center; margin-bottom: 20px; color: #111;">{{ t.partner_title }}</h2>
+        <p class="partner-description">Terima kasih kepada pihak sekolah, sponsor, dan mitra yang telah mendukung penuh perjalanan NAMDEL ESPORT.</p>
+        <div class="partner-grid">
+            <div class="partner-logo">
+                <img loading="lazy" src="{{ static_url('logo68.png') }}" alt="SMAN 68 Jakarta" width="501" height="512">
+            </div>
+            <div class="partner-logo">
+                <img loading="lazy" src="{{ static_url('logonest.png') }}" alt="NEST Esport" width="470" height="531">
+            </div>
+            <div class="partner-logo">
+                <img loading="lazy" src="{{ static_url('realme.png') }}" alt="Realme" width="500" height="500">
+            </div>
+        </div>
+        <a class="partner-placeholder" href="https://wa.me/{{ whatsapp_number }}?text=Halo%20Admin%2C%20saya%20tertarik%20menjadi%20sponsor%20NAMDEL%20ESPORT." target="_blank" rel="noopener noreferrer">
+            Jadilah sponsor kami via WhatsApp ↗
+        </a>
+    </section>
+
+    <!-- KONTAK FOOTER -->
+    <footer id="kontak" class="footer-section footer-section-styled">
+        <h2>HUBUNGI <span>KAMI</span></h2>
+        <p style="color: var(--text-gray); margin-bottom: 25px;">Ada pertanyaan atau tawaran kerja sama? Hubungi Humas kami.</p>
+        <a href="https://wa.me/{{ whatsapp_number }}" target="_blank" rel="noopener noreferrer" class="btn-wa">Chat Manajer ↗</a>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#9650;</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+            integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ"
+            crossorigin="anonymous"></script>
+    <script src="{{ static_url('script.js') }}" defer></script>
+</body>
+</html>

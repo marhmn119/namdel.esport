@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ article['content'][:160] }}">
+    <title>{{ article['title'] }} - NAMDEL ESPORT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .article-wrap { max-width: 850px; margin: 50px auto; padding: 24px; }
+        .article-wrap img { width: 100%; max-height: 480px; object-fit: cover; border-radius: 14px; }
+        .article-content { white-space: pre-line; line-height: 1.8; color: #d1d5db; }
+        .related { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+        .related a { color: #ffcc00; }
+    </style>
+</head>
+<body>
+    <main class="article-wrap">
+        <a href="/">← Kembali ke NAMDEL ESPORT</a>
+        <article>
+            <h1>{{ article['title'] }}</h1>
+            <p>{{ article['created_at'] }}</p>
+            {% if article['image'] %}<img loading="lazy" src="{{ url_for('static', filename=article['image']) }}" alt="{{ article['title'] }}">{% endif %}
+            <p class="article-content">{{ article['content'] }}</p>
+        </article>
+        {% if related %}
+        <section>
+            <h2>Berita terkait</h2>
+            <div class="related">
+                {% for item in related %}
+                <a href="{{ url_for('news_detail', news_id=item['id']) }}">{{ item['title'] }}</a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </main>
+</body>
+</html>
