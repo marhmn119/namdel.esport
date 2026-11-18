@@ -46,6 +46,7 @@ babel = Babel(app, locale_selector=get_locale)
 
 ADMIN_USER = os.getenv('ADMIN_USER')
 ADMIN_PASS = os.getenv('ADMIN_PASS')
+print(f"DEBUG ADMIN: User='{ADMIN_USER}', Pass='{ADMIN_PASS}'")
 
 # Tentukan Base Directory (untuk lokal)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
