@@ -46,7 +46,7 @@ babel = Babel(app, locale_selector=get_locale)
 
 ADMIN_USER = os.getenv('ADMIN_USER')
 ADMIN_PASS = os.getenv('ADMIN_PASS')
-print(f"DEBUG ADMIN: User='{ADMIN_USER}', Pass='{ADMIN_PASS}'")
+
 
 # Tentukan Base Directory (untuk lokal)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -66,8 +66,36 @@ try:
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     os.makedirs(LOG_FOLDER, exist_ok=True)
 except OSError as e:
-    print(f"Peringatan: Gagal membuat folder (kemungkinan sistem read-only): {e}")
+    print(f"Peringatan: Gagal membuat folder (kemungkinan sistem read-only): {e}")  
+import sqlite3
 
+def init_db():
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        
+        # GANTI 'users' dengan nama tabel yang ada di kode login kamu
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE,
+                password TEXT
+            )
+        ''')
+        
+              # Cek apakah admin sudah ada
+        cursor.execute("SELECT * FROM users WHERE username = ?", (ADMIN_USER,))
+        if not cursor.fetchone():
+            cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (ADMIN_USER, ADMIN_PASS))
+            
+        conn.commit()
+        conn.close()
+        print("Database berhasil diinisialisasi.")
+    except Exception as e:
+        print(f"Gagal inisialisasi database: {e}")
+
+# Panggil fungsinya
+init_db()   
 # Opsional: Jika kamu menggunakan SQLite, pastikan koneksi menggunakan DB_PATH yang baru ini
 # Contoh: app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
 
