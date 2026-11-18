@@ -47,15 +47,28 @@ babel = Babel(app, locale_selector=get_locale)
 ADMIN_USER = os.getenv('ADMIN_USER')
 ADMIN_PASS = os.getenv('ADMIN_PASS')
 
+# Tentukan Base Directory (untuk lokal)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.abspath(os.getenv('DATABASE_PATH', os.path.join(BASE_DIR, 'namdel.db')))
-UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
-LOG_FOLDER = os.path.join(BASE_DIR, 'logs')
+
+# 1. Konfigurasi Folder Upload (Gunakan /tmp untuk Vercel)
+UPLOAD_FOLDER = os.environ.get('UPLOAD_FOLDER', '/tmp/uploads')
+LOG_FOLDER = os.environ.get('LOG_FOLDER', '/tmp/logs')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
-os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-os.makedirs(LOG_FOLDER, exist_ok=True)
+
+# 2. Konfigurasi Database (Gunakan /tmp untuk Vercel)
+DB_PATH = os.environ.get('DATABASE_PATH', '/tmp/namdel.db')
+
+# 3. Buat folder dengan aman (bungkus try-except agar tidak crash di Vercel)
+try:
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    os.makedirs(LOG_FOLDER, exist_ok=True)
+except OSError as e:
+    print(f"Peringatan: Gagal membuat folder (kemungkinan sistem read-only): {e}")
+
+# Opsional: Jika kamu menggunakan SQLite, pastikan koneksi menggunakan DB_PATH yang baru ini
+# Contoh: app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
 
 file_handler = RotatingFileHandler(os.path.join(LOG_FOLDER, 'app.log'), maxBytes=1_000_000, backupCount=3, encoding='utf-8')
 file_handler.setLevel(logging.INFO)
