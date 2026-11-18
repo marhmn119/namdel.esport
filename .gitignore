@@ -1,0 +1,12 @@
+namdel.db
+.env
+*.db
+*.sqlite
+*.sqlite3
+static/uploads/
+logs/
+data/
+__pycache__/
+*.py[cod]
+.venv/
+venv/

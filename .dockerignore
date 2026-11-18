@@ -1,0 +1,12 @@
+.env
+laravel/.env
+laravel/vendor
+laravel/database/*.sqlite
+.git
+.venv
+venv
+__pycache__
+*.py[cod]
+*.db
+logs
+static/uploads

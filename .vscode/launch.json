@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Flask: Run and debug in Chrome",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/app.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "PORT": "5000"
+            },
+            "justMyCode": true,
+            "serverReadyAction": {
+                "action": "debugWithChrome",
+                "pattern": ".*Running on (https?://\\S+)",
+                "uriFormat": "%s"
+            }
+        }
+    ]
+}

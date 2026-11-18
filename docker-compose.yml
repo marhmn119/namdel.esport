@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    env_file:
+      - ./laravel/.env
+    ports:
+      - "5000:80"
+    volumes:
+      - ./laravel/database/namdel.sqlite:/var/www/html/database/namdel.sqlite
+      - ./laravel/public/static/uploads:/var/www/html/public/static/uploads
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/database/namdel.sqlite
+      SESSION_DRIVER: file
+      CACHE_STORE: file
+      QUEUE_CONNECTION: sync
+    restart: unless-stopped
